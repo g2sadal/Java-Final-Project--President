@@ -2,7 +2,7 @@
 
 public class Card implements Comparable<Card>
 {
-	private int suit;
+    private int suit;
     private int number;
     
     //1 is diamonds
@@ -11,10 +11,10 @@ public class Card implements Comparable<Card>
     //4 is hearts
 
    
-    public Card(int mySuit, int myNumber)
+    public Card(int mySuit, int myValue)
     {
         suit = mySuit;
-        number = myNumber;
+        value = myValue;
     }
     
     public int getSuit()
@@ -22,22 +22,20 @@ public class Card implements Comparable<Card>
         return suit;
     }
     
-    public int getNumber()
+    public int getValue()
     {
-        return number;
+        return Value;
     }
     
     public int compareTo(Card other)
     {
-        if(getNumber() > ((Card)other).getNumber())
+        if(getValue() > ((Card)other).getValue())
             return 1;
-        else if( getNumber() == ((Card)other).getNumber())
+        else if( getValue() == ((Card)other).getValue())
             return 0;
         else 
             return -1;
     }
-    
-    public int 
 }
 
 	
