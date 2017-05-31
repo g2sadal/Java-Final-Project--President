@@ -1,28 +1,45 @@
 
-public class CardTester 
+
+public class Card implements Comparable<Card>
 {
-	private Card c;
-	private Card d;
-	public CardTester()
-	{
-		 c = new Card(1,5);
-		 d = new Card(1,4);
-	}
-	
-	public static void main(String[] args)
-	{
-		CardTester t = new CardTester();
-		System.out.println(t.canPlay());
-	}
-	public boolean canPlay()
-	{
-		if(c.compareTo(d) == 1)
-			return true;
-		else if(c.compareTo(d)== 0)
-			return true;
-		else 
-			return false;
-	}
-	
-	
+	private int suit;
+    private int number;
+    
+    //1 is diamonds
+    //2 is clubs
+    //3 is spades
+    //4 is hearts
+
+   
+    public Card(int mySuit, int myNumber)
+    {
+        suit = mySuit;
+        number = myNumber;
+    }
+    
+    public int getSuit()
+    {
+        return suit;
+    }
+    
+    public int getNumber()
+    {
+        return number;
+    }
+    
+    public int compareTo(Card other)
+    {
+        if(getNumber() > ((Card)other).getNumber())
+            return 1;
+        else if( getNumber() == ((Card)other).getNumber())
+            return 0;
+        else 
+            return -1;
+    }
+    
+    public int 
 }
+
+	
+	
+
