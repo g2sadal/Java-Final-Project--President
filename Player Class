@@ -1,0 +1,28 @@
+import java.util.List;
+
+public class Player extends Thread
+{
+    private List<Card> hand;
+    private int rank;
+    
+    private Player (List<Card> h)
+    {
+        hand = h;
+    }
+    
+    public void selectCard()
+    {  
+        
+    }
+    
+    public Card playCard(/*card index sent from display/game */int i)
+    {
+        return hand.remove(i);
+    }
+
+    public void setRank(int r)
+    {
+        rank =r;
+    }
+    
+}
