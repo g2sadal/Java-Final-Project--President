@@ -1,0 +1,28 @@
+
+public class CardTester 
+{
+	private Card c;
+	private Card d;
+	public CardTester()
+	{
+		 c = new Card(1,5);
+		 d = new Card(1,4);
+	}
+	
+	public static void main(String[] args)
+	{
+		CardTester t = new CardTester();
+		System.out.println(t.canPlay());
+	}
+	public boolean canPlay()
+	{
+		if(c.compareTo(d) == 1)
+			return true;
+		else if(c.compareTo(d)== 0)
+			return true;
+		else 
+			return false;
+	}
+	
+	
+}
