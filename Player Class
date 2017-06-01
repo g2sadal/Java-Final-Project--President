@@ -1,28 +1,64 @@
+
+
 import java.util.List;
+import java.util.ArrayList;
 
 public class Player extends Thread
 {
     private List<Card> hand;
     private int rank;
+    private List<Card> play;
+    Socket socket;
+    BufferedReader input;
+    PrintWriter output;
     
-    private Player (List<Card> h)
+    private Player (List<Card> h, int r, Socket s)
     {
         hand = h;
+        rank = r;
+        socket = s;
+        try
+        {
+            input = new BufferedReader(new InputStreamREader(socket.getInputStream()));
+            output = new PrintWriter(socket.getOutputStream(), true);
+            output.println("Welcome Player" + rank);
+            output.println("Waiting for other players");
+        }
+        catch(IOException e)
+        {
+            System.out.println("No players");
+        }
     }
     
-    public void selectCard()
+    public void run()
+    {
+        try
+        {
+            output.println("All layers connected");
+            
+            if(player.getRank()== 1)
+                output.println("Your move");
+            
+            while(true)
+            {
+                String command = input.readLine();
+                
+            }
+        }
+    }
+    public void selectCard(/*card index sent from display/game */int i)
     {  
-        
+        play.add(hand.remove(i));
     }
     
     public Card playCard(/*card index sent from display/game */int i)
     {
-        return hand.remove(i);
+        return play;
     }
 
     public void setRank(int r)
     {
-        rank =r;
+        rank = r;
     }
     
 }
