@@ -3,7 +3,7 @@
 public class Card implements Comparable<Card>
 {
     private int suit;
-    private int number;
+    private int value;
     
     //1 is diamonds
     //2 is clubs
