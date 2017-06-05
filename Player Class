@@ -37,7 +37,7 @@ public class Player extends Thread
             output.println("All layers connected");
             
             if(player.getRank()== 1)
-                output.println("Your move");
+                //enable player's buttons
             
             while(true)
             {
