@@ -34,7 +34,7 @@ public class Player extends Thread
     {
         try
         {
-            output.println("All layers connected");
+            output.println("All players connected");
             
             if(player.getRank()== 1)
                 //enable player's buttons
@@ -42,6 +42,15 @@ public class Player extends Thread
             while(true)
             {
                 String command = input.readLine();
+                if(command.startsWith("MOVE"))
+                {
+                    command = command.substring(6);
+                    List<Card> move = new List<Card>();
+                    for(int i=0; i<command.length(); i++)
+                    {
+                        
+                    }
+                }
                 
             }
         }
