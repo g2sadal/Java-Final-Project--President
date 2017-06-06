@@ -46,9 +46,12 @@ public class Player extends Thread
                 {
                     command = command.substring(6);
                     List<Card> move = new List<Card>();
-                    for(int i=0; i<command.length(); i++)
+                    int suit, rank;
+                    for(int i=0; i<command.length(); i+=2)
                     {
-                        
+                        suit = new Integer.parseInt(command.charAt(i));
+                        rank = new Integer.parseInt(command.charAt(i+1));
+                        move.add(new Card(rank, suit));
                     }
                 }
                 
