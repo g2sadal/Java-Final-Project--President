@@ -1,4 +1,4 @@
-package edu.lmu.cs.networking;
+ 
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,8 +25,7 @@ public class Player extends Thread
         socket = s;
         try
         {
-            input = new BufferedReader(new InputStreamREader(socket.getInputStream()));
-            output = new PrintWriter(socket.getOutputStream(), true);
+            input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             output.println("Welcome Player" + rank);
             output.println("Waiting for other players");
         }
@@ -42,7 +41,7 @@ public class Player extends Thread
         {
             output.println("All players connected");
             
-            if(player.getRank()== 1)
+            if(rank == 1)
                 //enable player's buttons
             
             while(true)
@@ -51,26 +50,45 @@ public class Player extends Thread
                 if(command.startsWith("MOVE"))
                 {
                     command = command.substring(6);
-                    List<Card> move = new List<Card>();
+                    List<Card> move = new ArrayList<Card>();
                     int suit, rank;
                     for(int i=0; i<command.length(); i+=2)
                     {
-                        suit = new Integer.parseInt(command.charAt(i));
-                        rank = new Integer.parseInt(command.charAt(i+1));
+                        suit = Integer.parseInt(command.substring(i, i+1));
+                        rank = Integer.parseInt(command.substring(i+1, i+2));
                         move.add(new Card(suit, rank));
                     }
-                    
+                    if(validMove(move))
+                        output.println("Player " + rank + "played " + moveString(move));
+                    if(handCompleted())
+                        output.println("Player " + rank + "is done");
+                        
                 }
                 
             }
         }
+        catch(IOException e)
+        {
+            System.out.println("Game Over");
+        }
+        finally
+        {
+            try
+            {
+                socket.close();
+            }
+            catch(IOException e)
+            {
+            }
+        }
     }
+    
     public void selectCard(/*card index sent from display/game */int i)
     {  
         play.add(hand.remove(i));
     }
     
-    public Card playCard(/*card index sent from display/game */int i)
+    public List<Card> playCard(/*card index sent from display/game */int i)
     {
         return play;
     }
