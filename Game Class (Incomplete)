@@ -1,0 +1,33 @@
+import java.util.List;
+import java.util.ArrayList;
+
+public class Game 
+{
+	private boolean firstGame;
+    private int currentTurn;
+    private List<Card> deck;
+    private List<Card> discard;
+    private List<Card> pile;
+
+    /**
+     * Constructor for objects of class Game
+     */
+    public Game()
+    {
+        firstGame = true;
+        deck = new ArrayList<Card>(52); 
+        discard = new ArrayList<Card>();
+        pile = new ArrayList<Card>(); 
+        
+        for(int i = 0; i < deck.size(); i++)
+        {
+        	deck[i]
+        }
+    }
+    
+    public void shuffle()
+    {
+    	int totalCards = 52;
+    	
+    }
+}
