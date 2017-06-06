@@ -1,5 +1,11 @@
+package edu.lmu.cs.networking;
 
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -51,8 +57,9 @@ public class Player extends Thread
                     {
                         suit = new Integer.parseInt(command.charAt(i));
                         rank = new Integer.parseInt(command.charAt(i+1));
-                        move.add(new Card(rank, suit));
+                        move.add(new Card(suit, rank));
                     }
+                    
                 }
                 
             }
