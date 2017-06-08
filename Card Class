@@ -59,20 +59,8 @@ public class Card implements Comparable<Card>
     
     public String toString(Card card)
     {
-    	String result = "Suit is:";
-    	
-    	result += card.getSuit();
-    	
-    	result+= "Card Value is:";
-    	
-    	result += card.getValue();
-    	
-    	return result;
+    	return suit + " " + value; 
     }
-    
-    
-    
-   
 }
 
 	
