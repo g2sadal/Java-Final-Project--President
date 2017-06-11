@@ -18,9 +18,8 @@ public class Player extends Thread
     BufferedReader input;
     PrintWriter output;
     
-    private Player (List<Card> h, int r, Socket s)
+    private Player (int r, Socket s)
     {
-        hand = h;
         rank = r;
         socket = s;
         try
