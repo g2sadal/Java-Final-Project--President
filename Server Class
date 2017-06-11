@@ -17,10 +17,10 @@ public class Server
            while(true)
            {
                Game game = new Game();
-               Player player1 = game.getPlayer1();
-               Player player2 = game.getPlayer2();
-               Player player3 = game.getPlayer3();
-               Player player4 = game.getPlayer4();
+               Game.Player player1 = game.getPlayer1();
+               Game.Player player2 = game.getPlayer2();
+               Game.Player player3 = game.getPlayer3();
+               Game.Player player4 = game.getPlayer4();
                player1.start();
                player2.start();
                player3.start();
