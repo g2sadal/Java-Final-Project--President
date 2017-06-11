@@ -6,7 +6,6 @@ public class Game
 	private boolean firstGame;
     private int currentTurn;
     private Card[] deck;
-    private List<Card> discard;
     private List<Card> pile;
     private Player player1, player2, player3 player4;
 
