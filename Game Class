@@ -48,7 +48,47 @@ public class Game
         }
        
     }
-    
+    public void mouseClicked(MouseEvent arg) 
+		{
+			complete();
+				
+		}
+		
+		public boolean complete()
+		{
+			int countPile = 0;
+			
+			int countPlayerHand = 0;
+			
+			int total = 0;
+			
+			Card currentCard = pile.get(pile.size()-1);
+			for( int i = pile.size(); i > pile.size() - 4; i--)
+			{
+				if(currentCard == pile.get(i-1))
+				{
+					countPile += 1;
+				}
+			}
+			if (countPile!= 0) 
+			{
+				for( int i = 0; i < hand.size(); i++)
+				{
+					if(hand.get(i).equals(currentCard))
+					{
+						countPlayerHand +=1;
+					}
+				}
+				total = countPlayerHand + countPile;
+				
+				if(total != 4)
+				{
+					return false;
+				}
+				
+				return true;
+			}
+		}
     public void shuffle()
     {
     	for(int i = 0; i < deck.length; i++)
