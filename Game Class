@@ -6,7 +6,6 @@ public class Game
 	private boolean firstGame;
     private int currentTurn;
     private Card[] deck;
-    private List<Card> discard;
     private List<Card> pile;
     private Player player1, player2, player3, player4;
 
@@ -125,5 +124,21 @@ public class Game
     		System.out.println(deck[i].toString());
     	}
     }
-    	
+    
+    public Player getPlayer1()
+    {
+    	return player1;
+    }
+    public Player getPlayer2()
+    {
+    	return player2;
+    }
+    public Player getPlayer3()
+    {
+    	return player3;
+    }
+    public Player getPlayer4()
+    {
+    	return player4;
+    }
 }
