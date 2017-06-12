@@ -37,6 +37,11 @@ public class Player extends Thread
     	hand.add(c);
     }
     
+    public boolean finishedHand()
+    {
+    	return (hand.size() == 0);
+    }
+    
     public void run()
     {
         try
@@ -66,7 +71,7 @@ public class Player extends Thread
                         output.println("Player " + rank + "played " + moveString(move));
                     else
                         output.println("Invalid Move");
-                    if(handCompleted()/*checks if player finished their hand*/)
+                    if(finishedHand()/*checks if player finished their hand*/)
                         output.println("Player " + rank + "is done");
                 }
                 
