@@ -141,4 +141,32 @@ public class Game
     {
     	player4 = p4;
     }
+    public synchronized boolean validMove(List<Cards> move, Player player)
+    {
+    	 boolean sameCard = true;
+	 for(int i=0; i<move.size()-1; i++)
+	 {
+	 	if(move.get(i)!=move.get(i+1))
+			sameCard=false;
+	 }
+	 if(sameCard && player.getRank()==currentPlayer && move.get(i).compareTo(pile.get(2))>0)
+	 {
+
+		for(Card card: move)
+		{
+			pile.add(card);
+		}
+		
+		if(move.get(i).getValue()==15)
+			pile.removeRange(0, pile.size()-1);
+			
+		while(pile.size()>3)
+		{
+			pile.remove(0);
+		}
+		currentPlayer++;
+		return true;
+	 }
+	 return false;
+    }
 }
