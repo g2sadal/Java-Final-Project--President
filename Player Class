@@ -18,7 +18,7 @@ public class Player extends Thread
     BufferedReader input;
     PrintWriter output;
     
-    private Player (int r, Socket s)
+    private Player (Socket s, int r)
     {
         rank = r;
         socket = s;
