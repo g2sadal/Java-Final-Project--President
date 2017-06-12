@@ -1,5 +1,3 @@
- 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,6 +30,11 @@ public class Player extends Thread
         {
             System.out.println("No players");
         }
+    }
+    
+    public void addHand(Card c)
+    {
+    	hand.add(c);
     }
     
     public void run()
@@ -85,3 +88,4 @@ public class Player extends Thread
         }
     }
     
+}

@@ -7,7 +7,7 @@ public class Game
     private int currentTurn;
     private Card[] deck;
     private List<Card> pile;
-    private Player player1, player2, player3 player4;
+    private Player player1, player2, player3, player4;
 
     /**
      * Constructor for objects of class Game
@@ -19,7 +19,7 @@ public class Game
         discard = new ArrayList<Card>();
         pile = new ArrayList<Card>(); 
         
-        int value = 3;
+        int value = 0;
         
         while(value < 16)
         {
@@ -45,8 +45,49 @@ public class Game
         		deck[j].setSuit("Spades");
         	}
         }
+       
     }
-    
+    public void mouseClicked(MouseEvent arg) 
+		{
+			complete();
+				
+		}
+		
+		public boolean complete()
+		{
+			int countPile = 0;
+			
+			int countPlayerHand = 0;
+			
+			int total = 0;
+			
+			Card currentCard = pile.get(pile.size()-1);
+			for( int i = pile.size(); i > pile.size() - 4; i--)
+			{
+				if(currentCard == pile.get(i-1))
+				{
+					countPile += 1;
+				}
+			}
+			if (countPile!= 0) 
+			{
+				for( int i = 0; i < hand.size(); i++)
+				{
+					if(hand.get(i).equals(currentCard))
+					{
+						countPlayerHand +=1;
+					}
+				}
+				total = countPlayerHand + countPile;
+				
+				if(total != 4)
+				{
+					return false;
+				}
+				
+				return true;
+			}
+		}
     public void shuffle()
     {
     	for(int i = 0; i < deck.length; i++)
@@ -55,6 +96,17 @@ public class Game
     		Card temp = deck[i];
     		deck[i] = deck[index];
     		deck[index] = temp;	
+    	}
+    }
+    
+    public void deal(Player p1, Player p2, Player p3, Player p4)
+    {
+    	for(int i = 0; i < deck.length; i += 4)
+    	{
+    		p1.addHand(deck[i]);
+    		p2.addHand(deck[i+1]);
+    		p3.addHand(deck[i+2]);
+    		p4.addHand(deck[i+3]);
     	}
     }
     
