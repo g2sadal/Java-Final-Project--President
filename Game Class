@@ -125,20 +125,20 @@ public class Game
     	}
     }
     
-    public Player getPlayer1()
+    public Player setPlayer1(Player p1)
     {
-    	return player1;
+    	player1 = p1;
     }
-    public Player getPlayer2()
+    public Player setPlayer2(Player p2)
     {
-    	return player2;
+    	player2 = p2;
     }
-    public Player getPlayer3()
+    public Player setPlayer3(Player p3)
     {
-    	return player3;
+    	player3 = p3;
     }
-    public Player getPlayer4()
+    public Player setPlayer4(Player p4)
     {
-    	return player4;
+    	player4 = p4;
     }
 }
