@@ -128,18 +128,22 @@ public class Game
     public Player setPlayer1(Player p1)
     {
     	player1 = p1;
+	return player1;
     }
     public Player setPlayer2(Player p2)
     {
     	player2 = p2;
+	return player2;
     }
     public Player setPlayer3(Player p3)
     {
     	player3 = p3;
+	return player3;
     }
     public Player setPlayer4(Player p4)
     {
     	player4 = p4;
+	return player4;
     }
     public synchronized boolean validMove(List<Cards> move, Player player)
     {
