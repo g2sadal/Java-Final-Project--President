@@ -1,52 +1,151 @@
 import java.util.List;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Game 
 {
 	private boolean firstGame;
     private int currentTurn;
-    private Card[] deck;
+    private ArrayList<Card> deck;
+    private List<Card> discard;
     private List<Card> pile;
     private Player player1, player2, player3, player4;
 
     /**
      * Constructor for objects of class Game
      */
-    public Game()
+    public Game() throws IOException
     {
         firstGame = true;
-        deck = new Card[52]; 
+        deck = new ArrayList<Card>(); 
         discard = new ArrayList<Card>();
         pile = new ArrayList<Card>(); 
         
-        int value = 0;
-        
-        while(value < 16)
-        {
-        	for(int i = 0; i < deck.length; i += 13)
-        	{
-        		deck[i] = new Card("Diamond", value);
-        	}
-        	value++;
-        }
-        
-        for(int j = 0; j < deck.length; j++)
-        {
-        	if(j < 14)
-        	{
-        		deck[j].setSuit("Hearts");
-        	}
-        	else if(j < 27)
-        	{
-        		deck[j].setSuit("Clubs");
-        	}
-        	else if(j < 40)
-        	{
-        		deck[j].setSuit("Spades");
-        	}
-        }
-       
+       Card Clubs10 = new Card("Clubs", 10, ImageIO.read(new File("10_of_clubs.png")));
+       deck.add(Clubs10);
+ 	   Card Diamonds10 = new Card("Diamonds", 10, ImageIO.read(new File("10_of_diamonds.png")));
+ 	   deck.add(Diamonds10);
+ 	   Card Spades10 = new Card("Spades", 10, ImageIO.read(new File("10_of_spades.png")));
+ 	   deck.add(Spades10);
+ 	   Card Hearts10 = new Card("Hearts", 10, ImageIO.read(new File("10_of_hearts.png")));
+ 	   deck.add(Hearts10);
+ 	   
+ 	   
+ 	   Card Clubs2 = new Card("Clubs", 15, ImageIO.read(new File("2_of_clubs.png")));
+ 	   deck.add(Clubs2);
+ 	   Card Diamonds2 = new Card("Diamonds", 15, ImageIO.read(new File("2_of_diamonds.png")));
+ 	   deck.add(Diamonds2);
+ 	   Card Spades2 = new Card("Spades", 15, ImageIO.read(new File("2_of_spades.png")));
+ 	   deck.add(Spades2);
+ 	   Card Hearts2 = new Card("Hearts", 15, ImageIO.read(new File("2_of_hearts.png")));
+ 	   deck.add(Hearts2);
+ 	   
+ 	   Card Clubs3 = new Card("Clubs", 3, ImageIO.read(new File("3_of_clubs.png")));
+ 	   deck.add(Clubs3);
+ 	   Card Diamonds3 = new Card("Diamonds", 3, ImageIO.read(new File("3_of_diamonds.png")));
+ 	   deck.add(Diamonds3);
+ 	   Card Spades3 = new Card("Spades", 3, ImageIO.read(new File("3_of_spades.png")));
+ 	   deck.add(Spades3);
+ 	   Card Hearts3 = new Card("Hearts", 3, ImageIO.read(new File("3_of_hearts.png")));
+ 	   deck.add(Hearts3);
+ 	    
+ 	   Card Clubs4 = new Card("Clubs", 4, ImageIO.read(new File("4_of_clubs.png")));
+ 	   deck.add(Clubs4);
+ 	   Card Diamonds4 = new Card("Diamonds", 4, ImageIO.read(new File("4_of_diamonds.png")));
+ 	   deck.add(Diamonds4);
+ 	   Card Spades4 = new Card("Spades", 4, ImageIO.read(new File("4_of_spades.png")));
+ 	   deck.add(Spades4);
+ 	   Card Hearts4 = new Card("Hearts", 4, ImageIO.read(new File("4_of_hearts.png")));
+ 	   deck.add(Hearts4);
+ 	   
+ 	   Card Clubs5 = new Card("Clubs", 5, ImageIO.read(new File("5_of_clubs.png")));
+ 	   deck.add(Clubs5);
+ 	   Card Diamonds5 = new Card("Diamonds", 5, ImageIO.read(new File("5_of_diamonds.png")));
+ 	   deck.add(Diamonds5);
+ 	   Card Spades5 = new Card("Spades", 5, ImageIO.read(new File("5_of_spades.png")));
+ 	   deck.add(Spades5);
+ 	   Card Hearts5 = new Card("Hearts", 5, ImageIO.read(new File("5_of_hearts.png")));
+ 	   deck.add(Hearts5);
+ 	   
+
+ 	   Card Clubs6 = new Card("Clubs", 6, ImageIO.read(new File("6_of_clubs.png")));
+ 	   deck.add(Clubs6);
+ 	   Card Diamonds6 = new Card("Diamonds", 6, ImageIO.read(new File("6_of_diamonds.png")));
+ 	   deck.add(Diamonds6);
+ 	   Card Spades6 = new Card("Spades", 6, ImageIO.read(new File("6_of_spades.png")));
+ 	   deck.add(Spades6);
+ 	   Card Hearts6 = new Card("Hearts", 6, ImageIO.read(new File("6_of_hearts.png")));
+ 	   deck.add(Hearts6);
+ 	   
+
+ 	   Card Clubs7 = new Card("Clubs", 7, ImageIO.read(new File("7_of_clubs.png")));
+ 	   deck.add(Clubs7);
+ 	   Card Diamonds7 = new Card("Diamonds", 7, ImageIO.read(new File("7_of_diamonds.png")));
+ 	   deck.add(Diamonds7);
+ 	   Card Spades7 = new Card("Spades", 7, ImageIO.read(new File("7_of_spades.png")));
+ 	   deck.add(Spades7);
+ 	   Card Hearts7 = new Card("Hearts", 7, ImageIO.read(new File("7_of_hearts.png")));
+ 	   deck.add(Hearts7);
+ 	   
+ 	   
+ 	   Card Clubs8 = new Card("Clubs", 8, ImageIO.read(new File("7_of_clubs.png")));
+ 	   deck.add(Clubs8);
+ 	   Card Diamonds8 = new Card("Diamonds", 8, ImageIO.read(new File("7_of_diamonds.png")));
+ 	   deck.add(Diamonds8);
+ 	   Card Spades8 = new Card("Spades", 8, ImageIO.read(new File("7_of_spades.png")));
+ 	   deck.add(Spades8);
+ 	   Card Hearts8 = new Card("Hearts", 8, ImageIO.read(new File("7_of_hearts.png")));
+ 	   deck.add(Hearts8);
+ 	   
+ 	   Card Clubs9 = new Card("Clubs", 9, ImageIO.read(new File("7_of_clubs.png")));
+ 	   deck.add(Clubs9);
+ 	   Card Diamonds9 = new Card("Diamonds", 9, ImageIO.read(new File("7_of_diamonds.png")));
+ 	   deck.add(Diamonds9);
+ 	   Card Spades9 = new Card("Spades", 9, ImageIO.read(new File("7_of_spades.png")));
+ 	   deck.add(Spades9);
+ 	   Card Hearts9 = new Card("Hearts", 9, ImageIO.read(new File("7_of_hearts.png")));
+ 	   deck.add(Hearts9);
+ 	   
+ 	   Card ClubsAce = new Card("Clubs", 14, ImageIO.read(new File("ace_of_clubs.png")));
+ 	   deck.add(ClubsAce);
+ 	   Card DiamondsAce = new Card("Diamonds", 14, ImageIO.read(new File("ace_of_diamonds.png")));
+ 	   deck.add(DiamondsAce);
+ 	   Card SpadesAce = new Card("Spades", 14, ImageIO.read(new File("ace_of_spades.png")));
+ 	   deck.add(SpadesAce);
+ 	   Card HeartsAce = new Card("Hearts", 14, ImageIO.read(new File("ace_of_hearts.png")));
+ 	   deck.add(HeartsAce);
+ 	   
+ 	   Card ClubsJack = new Card("Clubs", 11, ImageIO.read(new File("jack_of_clubs.png")));
+ 	   deck.add(ClubsJack);
+ 	   Card DiamondsJack = new Card("Diamonds", 11, ImageIO.read(new File("jack_of_diamonds.png")));
+ 	   deck.add(DiamondsJack);
+ 	   Card SpadesJack = new Card("Spades", 11, ImageIO.read(new File("jack_of_spades.png")));
+ 	   deck.add(SpadesJack);
+ 	   Card HeartsJack = new Card("Hearts", 11, ImageIO.read(new File("jack_of_hearts.png")));
+ 	   deck.add(HeartsJack);
+ 	   
+ 	   Card ClubsKing = new Card("Clubs", 13, ImageIO.read(new File("king_of_clubs.png")));
+ 	   deck.add(ClubsKing);
+ 	   Card DiamondsKing = new Card("Diamonds", 13, ImageIO.read(new File("king_of_diamonds.png")));
+ 	   deck.add(DiamondsKing);
+ 	   Card SpadesKing = new Card("Spades", 13, ImageIO.read(new File("king_of_spades.png")));
+ 	   deck.add(SpadesKing);
+ 	   Card HeartsKing = new Card("Hearts", 13, ImageIO.read(new File("king_of_hearts.png")));
+ 	   deck.add(HeartsKing);
+ 	   
+ 	   Card ClubsQueen = new Card("Clubs", 12, ImageIO.read(new File("king_of_clubs.png")));
+ 	   deck.add(ClubsQueen);
+ 	   Card DiamondsQueen = new Card("Diamonds", 12, ImageIO.read(new File("king_of_diamonds.png")));
+ 	   deck.add(DiamondsQueen);
+ 	   Card SpadesQueen = new Card("Spades", 12, ImageIO.read(new File("king_of_spades.png")));
+ 	   deck.add(SpadesQueen);
+ 	   Card HeartsQueen = new Card("Hearts", 12, ImageIO.read(new File("king_of_hearts.png")));  
+ 	   deck.add(HeartsQueen);
+ 	   
     }
+
     public void mouseClicked(MouseEvent arg) 
 		{
 			complete();
@@ -90,39 +189,36 @@ public class Game
 		}
     public void shuffle()
     {
-    	for(int i = 0; i < deck.length; i++)
+    	
+    	for(int i = 0; i < deck.size(); i++)
     	{
-    		int index = (int)(Math.random() * deck.length);
-    		Card temp = deck[i];
-    		deck[i] = deck[index];
-    		deck[index] = temp;	
+    		int index = (int)(Math.random() * deck.size());
+    		Card temp = deck.get(i);
+    		deck.set(i, deck.get(index));
+    		deck.set(index, temp);
     	}
     }
     
-    public void deal(Player p1, Player p2, Player p3, Player p4)
+   public void deal(Player p1, Player p2, Player p3, Player p4)
     {
-    	for(int i = 0; i < deck.length; i += 4)
+    	for(int i = 0; i < deck.size() - 3; i += 4)
     	{
-    		p1.addHand(deck[i]);
-    		p2.addHand(deck[i+1]);
-    		p3.addHand(deck[i+2]);
-    		p4.addHand(deck[i+3]);
+    		p1.addHand(deck.get(i));
+    		p2.addHand(deck.get(i+1));
+    		p3.addHand(deck.get(i+2));
+    		p4.addHand(deck.get(i+3));
     	}
     }
     
-    public void print()
+    public String print()
     {
-    	for(int i = 0; i < deck.length; i++)
+    	String output = "";
+    	for(int i = 0; i < deck.size(); i++)
     	{
-    		System.out.print(deck[i].toString());
+    		 output += deck.get(i);
     	}
     	
-    	shuffle();
-    	
-    	for(int i = 0; i < deck.length; i++)
-    	{
-    		System.out.println(deck[i].toString());
-    	}
+    	return output;
     }
     
     public Player setPlayer1(Player p1)
