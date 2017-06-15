@@ -48,4 +48,46 @@ public class Client
             }
         }
     }
+      public static void print(ArrayList<Card> cards)
+    {
+    	
+    	System.out.print(output);
+    }
+   
+    btnMakeMove.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+			    String output = "";
+    	for(int i = 0; i < cards.size(); i++)
+    	{
+    		 output += cards.get(i).toString();
+    	}
+    	
+			    out.println("MOVE " + output);
+			}
+			
+			btnCompletion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				    String output = "";
+    	for(int i = 0; i < cards.size(); i++)
+    	{
+    		 output += cards.get(i).toString();
+    	}
+    	
+			    out.println("COMPLETION " + output);
+			}
+			btnPass.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+			    out.println("PASS");
+			}
+		});
+		});
+		
+			
+		});
+		
 }
