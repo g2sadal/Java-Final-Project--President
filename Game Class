@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Game 
 {
 	private boolean firstGame;
-    private int currentTurn;
+    private int currentPlayer;
     private ArrayList<Card> deck;
     private List<Card> discard;
     private List<Card> pile;
@@ -23,170 +23,131 @@ public class Game
         discard = new ArrayList<Card>();
         pile = new ArrayList<Card>(); 
         
-       Card Clubs10 = new Card("Clubs", 10, ImageIO.read(new File("10_of_clubs.png")));
+       Card Clubs10 = new Card("Clubs", 10);
        deck.add(Clubs10);
- 	   Card Diamonds10 = new Card("Diamonds", 10, ImageIO.read(new File("10_of_diamonds.png")));
+ 	   Card Diamonds10 = new Card("Diamonds", 10);
  	   deck.add(Diamonds10);
- 	   Card Spades10 = new Card("Spades", 10, ImageIO.read(new File("10_of_spades.png")));
+ 	   Card Spades10 = new Card("Spades", 10);
  	   deck.add(Spades10);
- 	   Card Hearts10 = new Card("Hearts", 10, ImageIO.read(new File("10_of_hearts.png")));
+ 	   Card Hearts10 = new Card("Hearts", 10);
  	   deck.add(Hearts10);
  	   
- 	   
- 	   Card Clubs2 = new Card("Clubs", 15, ImageIO.read(new File("2_of_clubs.png")));
+ 	   Card Clubs2 = new Card("Clubs", 15);
  	   deck.add(Clubs2);
- 	   Card Diamonds2 = new Card("Diamonds", 15, ImageIO.read(new File("2_of_diamonds.png")));
+ 	   Card Diamonds2 = new Card("Diamonds", 15);
  	   deck.add(Diamonds2);
- 	   Card Spades2 = new Card("Spades", 15, ImageIO.read(new File("2_of_spades.png")));
+ 	   Card Spades2 = new Card("Spades", 15);
  	   deck.add(Spades2);
- 	   Card Hearts2 = new Card("Hearts", 15, ImageIO.read(new File("2_of_hearts.png")));
+ 	   Card Hearts2 = new Card("Hearts", 15);
  	   deck.add(Hearts2);
  	   
- 	   Card Clubs3 = new Card("Clubs", 3, ImageIO.read(new File("3_of_clubs.png")));
+ 	   Card Clubs3 = new Card("Clubs", 3);
  	   deck.add(Clubs3);
- 	   Card Diamonds3 = new Card("Diamonds", 3, ImageIO.read(new File("3_of_diamonds.png")));
+ 	   Card Diamonds3 = new Card("Diamonds", 3);
  	   deck.add(Diamonds3);
- 	   Card Spades3 = new Card("Spades", 3, ImageIO.read(new File("3_of_spades.png")));
+ 	   Card Spades3 = new Card("Spades", 3);
  	   deck.add(Spades3);
- 	   Card Hearts3 = new Card("Hearts", 3, ImageIO.read(new File("3_of_hearts.png")));
+ 	   Card Hearts3 = new Card("Hearts", 3);
  	   deck.add(Hearts3);
  	    
- 	   Card Clubs4 = new Card("Clubs", 4, ImageIO.read(new File("4_of_clubs.png")));
+ 	   Card Clubs4 = new Card("Clubs", 4);
  	   deck.add(Clubs4);
- 	   Card Diamonds4 = new Card("Diamonds", 4, ImageIO.read(new File("4_of_diamonds.png")));
+ 	   Card Diamonds4 = new Card("Diamonds", 4);
  	   deck.add(Diamonds4);
- 	   Card Spades4 = new Card("Spades", 4, ImageIO.read(new File("4_of_spades.png")));
+ 	   Card Spades4 = new Card("Spades", 4);
  	   deck.add(Spades4);
- 	   Card Hearts4 = new Card("Hearts", 4, ImageIO.read(new File("4_of_hearts.png")));
+ 	   Card Hearts4 = new Card("Hearts", 4);
  	   deck.add(Hearts4);
  	   
- 	   Card Clubs5 = new Card("Clubs", 5, ImageIO.read(new File("5_of_clubs.png")));
+ 	   Card Clubs5 = new Card("Clubs", 5);
  	   deck.add(Clubs5);
- 	   Card Diamonds5 = new Card("Diamonds", 5, ImageIO.read(new File("5_of_diamonds.png")));
+ 	   Card Diamonds5 = new Card("Diamonds", 5);
  	   deck.add(Diamonds5);
- 	   Card Spades5 = new Card("Spades", 5, ImageIO.read(new File("5_of_spades.png")));
+ 	   Card Spades5 = new Card("Spades", 5);
  	   deck.add(Spades5);
- 	   Card Hearts5 = new Card("Hearts", 5, ImageIO.read(new File("5_of_hearts.png")));
+ 	   Card Hearts5 = new Card("Hearts", 5);
  	   deck.add(Hearts5);
  	   
-
- 	   Card Clubs6 = new Card("Clubs", 6, ImageIO.read(new File("6_of_clubs.png")));
+ 	   Card Clubs6 = new Card("Clubs", 6);
  	   deck.add(Clubs6);
- 	   Card Diamonds6 = new Card("Diamonds", 6, ImageIO.read(new File("6_of_diamonds.png")));
+ 	   Card Diamonds6 = new Card("Diamonds", 6);
  	   deck.add(Diamonds6);
- 	   Card Spades6 = new Card("Spades", 6, ImageIO.read(new File("6_of_spades.png")));
+ 	   Card Spades6 = new Card("Spades", 6);
  	   deck.add(Spades6);
- 	   Card Hearts6 = new Card("Hearts", 6, ImageIO.read(new File("6_of_hearts.png")));
+ 	   Card Hearts6 = new Card("Hearts", 6);
  	   deck.add(Hearts6);
  	   
-
- 	   Card Clubs7 = new Card("Clubs", 7, ImageIO.read(new File("7_of_clubs.png")));
+ 	   Card Clubs7 = new Card("Clubs", 7);
  	   deck.add(Clubs7);
- 	   Card Diamonds7 = new Card("Diamonds", 7, ImageIO.read(new File("7_of_diamonds.png")));
+ 	   Card Diamonds7 = new Card("Diamonds", 7);
  	   deck.add(Diamonds7);
- 	   Card Spades7 = new Card("Spades", 7, ImageIO.read(new File("7_of_spades.png")));
+ 	   Card Spades7 = new Card("Spades", 7);
  	   deck.add(Spades7);
- 	   Card Hearts7 = new Card("Hearts", 7, ImageIO.read(new File("7_of_hearts.png")));
+ 	   Card Hearts7 = new Card("Hearts", 7);
  	   deck.add(Hearts7);
  	   
- 	   
- 	   Card Clubs8 = new Card("Clubs", 8, ImageIO.read(new File("7_of_clubs.png")));
+ 	   Card Clubs8 = new Card("Clubs", 8);
  	   deck.add(Clubs8);
- 	   Card Diamonds8 = new Card("Diamonds", 8, ImageIO.read(new File("7_of_diamonds.png")));
+ 	   Card Diamonds8 = new Card("Diamonds", 8);
  	   deck.add(Diamonds8);
- 	   Card Spades8 = new Card("Spades", 8, ImageIO.read(new File("7_of_spades.png")));
+ 	   Card Spades8 = new Card("Spades", 8);
  	   deck.add(Spades8);
- 	   Card Hearts8 = new Card("Hearts", 8, ImageIO.read(new File("7_of_hearts.png")));
+ 	   Card Hearts8 = new Card("Hearts", 8);
  	   deck.add(Hearts8);
  	   
- 	   Card Clubs9 = new Card("Clubs", 9, ImageIO.read(new File("7_of_clubs.png")));
+ 	   Card Clubs9 = new Card("Clubs", 9);
  	   deck.add(Clubs9);
- 	   Card Diamonds9 = new Card("Diamonds", 9, ImageIO.read(new File("7_of_diamonds.png")));
+ 	   Card Diamonds9 = new Card("Diamonds", 9);
  	   deck.add(Diamonds9);
- 	   Card Spades9 = new Card("Spades", 9, ImageIO.read(new File("7_of_spades.png")));
+ 	   Card Spades9 = new Card("Spades", 9);
  	   deck.add(Spades9);
- 	   Card Hearts9 = new Card("Hearts", 9, ImageIO.read(new File("7_of_hearts.png")));
+ 	   Card Hearts9 = new Card("Hearts", 9);
  	   deck.add(Hearts9);
  	   
- 	   Card ClubsAce = new Card("Clubs", 14, ImageIO.read(new File("ace_of_clubs.png")));
+ 	   Card ClubsAce = new Card("Clubs", 14);
  	   deck.add(ClubsAce);
- 	   Card DiamondsAce = new Card("Diamonds", 14, ImageIO.read(new File("ace_of_diamonds.png")));
+ 	   Card DiamondsAce = new Card("Diamonds", 14);
  	   deck.add(DiamondsAce);
- 	   Card SpadesAce = new Card("Spades", 14, ImageIO.read(new File("ace_of_spades.png")));
+ 	   Card SpadesAce = new Card("Spades", 14);
  	   deck.add(SpadesAce);
- 	   Card HeartsAce = new Card("Hearts", 14, ImageIO.read(new File("ace_of_hearts.png")));
+ 	   Card HeartsAce = new Card("Hearts", 14);
  	   deck.add(HeartsAce);
  	   
- 	   Card ClubsJack = new Card("Clubs", 11, ImageIO.read(new File("jack_of_clubs.png")));
+ 	   Card ClubsJack = new Card("Clubs", 11);
  	   deck.add(ClubsJack);
- 	   Card DiamondsJack = new Card("Diamonds", 11, ImageIO.read(new File("jack_of_diamonds.png")));
+ 	   Card DiamondsJack = new Card("Diamonds", 11);
  	   deck.add(DiamondsJack);
- 	   Card SpadesJack = new Card("Spades", 11, ImageIO.read(new File("jack_of_spades.png")));
+ 	   Card SpadesJack = new Card("Spades", 11);
  	   deck.add(SpadesJack);
- 	   Card HeartsJack = new Card("Hearts", 11, ImageIO.read(new File("jack_of_hearts.png")));
+ 	   Card HeartsJack = new Card("Hearts", 11);
  	   deck.add(HeartsJack);
  	   
- 	   Card ClubsKing = new Card("Clubs", 13, ImageIO.read(new File("king_of_clubs.png")));
+ 	   Card ClubsKing = new Card("Clubs", 13);
  	   deck.add(ClubsKing);
- 	   Card DiamondsKing = new Card("Diamonds", 13, ImageIO.read(new File("king_of_diamonds.png")));
+ 	   Card DiamondsKing = new Card("Diamonds", 13);
  	   deck.add(DiamondsKing);
- 	   Card SpadesKing = new Card("Spades", 13, ImageIO.read(new File("king_of_spades.png")));
+ 	   Card SpadesKing = new Card("Spades", 13);
  	   deck.add(SpadesKing);
- 	   Card HeartsKing = new Card("Hearts", 13, ImageIO.read(new File("king_of_hearts.png")));
+ 	   Card HeartsKing = new Card("Hearts", 13);
  	   deck.add(HeartsKing);
  	   
- 	   Card ClubsQueen = new Card("Clubs", 12, ImageIO.read(new File("king_of_clubs.png")));
+ 	   Card ClubsQueen = new Card("Clubs", 12);
  	   deck.add(ClubsQueen);
- 	   Card DiamondsQueen = new Card("Diamonds", 12, ImageIO.read(new File("king_of_diamonds.png")));
+ 	   Card DiamondsQueen = new Card("Diamonds", 12);
  	   deck.add(DiamondsQueen);
- 	   Card SpadesQueen = new Card("Spades", 12, ImageIO.read(new File("king_of_spades.png")));
+ 	   Card SpadesQueen = new Card("Spades", 12);
  	   deck.add(SpadesQueen);
- 	   Card HeartsQueen = new Card("Hearts", 12, ImageIO.read(new File("king_of_hearts.png")));  
+ 	   Card HeartsQueen = new Card("Hearts", 12);  
  	   deck.add(HeartsQueen);
  	   
     }
-
-    public void mouseClicked(MouseEvent arg) 
-		{
-			complete();
-				
-		}
-		
-		public boolean complete()
-		{
-			int countPile = 0;
-			
-			int countPlayerHand = 0;
-			
-			int total = 0;
-			
-			Card currentCard = pile.get(pile.size()-1);
-			for( int i = pile.size(); i > pile.size() - 4; i--)
-			{
-				if(currentCard == pile.get(i-1))
-				{
-					countPile += 1;
-				}
-			}
-			if (countPile!= 0) 
-			{
-				for( int i = 0; i < hand.size(); i++)
-				{
-					if(hand.get(i).equals(currentCard))
-					{
-						countPlayerHand +=1;
-					}
-				}
-				total = countPlayerHand + countPile;
-				
-				if(total != 4)
-				{
-					return false;
-				}
-				
-				return true;
-			}
-		}
+    
+    
+    public ArrayList<Card> getDeck()
+    {
+    	return deck;
+    }
+    
     public void shuffle()
     {
     	
@@ -199,7 +160,7 @@ public class Game
     	}
     }
     
-   public void deal(Player p1, Player p2, Player p3, Player p4)
+    public void deal(Player p1, Player p2, Player p3, Player p4)
     {
     	for(int i = 0; i < deck.size() - 3; i += 4)
     	{
@@ -210,18 +171,49 @@ public class Game
     	}
     }
     
-    public String print()
-    {
-    	String output = "";
-    	for(int i = 0; i < deck.size(); i++)
-    	{
-    		 output += deck.get(i);
-    	}
-    	
-    	return output;
-    }
-    
-    public Player setPlayer1(Player p1)
+    public void mouseClicked(MouseEvent arg) 
+	{
+		complete();
+			
+	}
+	
+	public boolean complete()
+	{
+		int countPile = 0;
+		
+		int countPlayerHand = 0;
+		
+		int total = 0;
+		
+		Card currentCard = pile.get(pile.size()-1);
+		for( int i = pile.size(); i > pile.size() - 4; i--)
+		{
+			if(currentCard == pile.get(i-1))
+			{
+				countPile += 1;
+			}
+		}
+		if (countPile!= 0) 
+		{
+			for( int i = 0; i < hand.size(); i++)
+			{
+				if(hand.get(i).equals(currentCard))
+				{
+					countPlayerHand +=1;
+				}
+			}
+			total = countPlayerHand + countPile;
+			
+			if(total != 4)
+			{
+				return false;
+			}
+			
+			return true;
+		}
+	}
+	
+	public Player setPlayer1(Player p1)
     {
     	player1 = p1;
 	return player1;
@@ -241,32 +233,71 @@ public class Game
     	player4 = p4;
 	return player4;
     }
-    public synchronized boolean validMove(List<Cards> move, Player player)
+    
+    public synchronized boolean validMove(List<Card> move, Player player)
     {
-    	 boolean sameCard = true;
-	 for(int i=0; i<move.size()-1; i++)
-	 {
-	 	if(move.get(i)!=move.get(i+1))
+    	boolean sameCard = true;
+    	for(int i=0; i<move.size()-1; i++)
+    	{
+    		if(move.get(i)!=move.get(i+1))
 			sameCard=false;
-	 }
-	 if(sameCard && player.getRank()==currentPlayer && move.get(i).compareTo(pile.get(2))>0)
-	 {
+    	}
+    	if(sameCard && player.getRank()==currentPlayer && move.get(i).compareTo(pile.get(2))>0)
+    	{
 
-		for(Card card: move)
-		{
-			pile.add(card);
-		}
+    		for(Card card: move)
+    		{
+    			pile.add(card);
+    		}
 		
-		if(move.get(i).getValue()==15)
-			pile.removeRange(0, pile.size()-1);
+    		if(move.get(i).getValue()==15)
+    		{
+    			pile.removeRange(0, pile.size()-1);
+    		}
 			
-		while(pile.size()>3)
-		{
-			pile.remove(0);
-		}
-		currentPlayer++;
-		return true;
-	 }
+    		while(pile.size()>3)
+    		{
+    			pile.remove(0);
+    		}
+    		currentPlayer++;
+    		currentPlayer = currentPlayerLoop();
+    		return true;
+    	}
 	 return false;
     }
+    
+    public void skip()
+    {
+    	Card currentCard = pile.get(pile.size()-2);
+    	Card nextCard = pile.get(pile.size()-1);
+    	
+    	if(currentCard == nextCard)
+    	{
+    		currentPlayer += 2;
+    		currentPlayer = currentPlayerLoop();
+    	}
+    }
+    
+    public int currentPlayerLoop()
+    {
+    	if(currentPlayer > 4)
+    	{
+    		currentPlayer = currentPlayer % 4;
+    	}
+    	
+    	return currentPlayer;
+    }
+    
+    public void print()
+    {
+    	String output = "";
+    	for(int i = 0; i < deck.size(); i++)
+    	{
+    		 output += deck.get(i);
+    	}
+    	
+    	System.out.print(output);
+    }
+   
+    	
 }
