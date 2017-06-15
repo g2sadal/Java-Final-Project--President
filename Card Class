@@ -1,4 +1,8 @@
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 
 
@@ -6,23 +10,18 @@ public class Card implements Comparable<Card>
 {
 	private String suit;
     private int value;
-    
+    private BufferedImage cardImage;
     
     //1 is diamonds
     //2 is clubs
     //3 is spades
     //4 is hearts
-   public void main(String[] args)
-   {
-	  Card picture = new Card("Diamond", 1);
-	  
-   }
    
-    public Card(String mySuit, int myNumber)
+    public Card(String mySuit, int myNumber, BufferedImage Card)
     {
         suit = mySuit;
         value = myNumber;
-        
+        cardImage = Card;
     }
     
     public String getSuit()
@@ -47,6 +46,8 @@ public class Card implements Comparable<Card>
     	return suit;
     }
     
+    
+    
     public int compareTo(Card other)
     {
         if(getValue() > ((Card)other).getValue())
@@ -62,7 +63,3 @@ public class Card implements Comparable<Card>
     	return suit + " " + value; 
     }
 }
-
-	
-	
-
