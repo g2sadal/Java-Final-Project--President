@@ -33,7 +33,10 @@ public class Card implements Comparable<Card>
     {
         return value;
     }
-    
+    public BufferedImage getImage()
+    {
+        return cardImage;
+    }
     public int setValue(int number)
     {
     	value = number;
