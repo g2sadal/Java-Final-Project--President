@@ -44,6 +44,12 @@ public class Player extends Thread
     	return (hand.size() == 0);
     }
     
+    public ArrayList<Card> getHand()
+    {
+      return hand;
+    }
+    
+    
     private String moveToString(List<Card> move)
     {
         String output = "";
