@@ -1,4 +1,4 @@
-package edu.lmu.cs.networking;
+ 
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
+import java.util.ArrayList;
+
 public class Server
 {
    public static void main (String[] args) throws Exception
@@ -26,9 +29,28 @@ public class Server
                player2.start();
                player3.start();
                player4.start();
+               while(true)
+               {
+                   if(player1.canMove())
+                   {
+                        game.makeMove(player1.getPlay());
+                   }
+                   if(player2.canMove())
+                   {
+                        game.makeMove(player2.getPlay());
+                   }
+                   if(player3.canMove())
+                   {
+                        game.makeMove(player3.getPlay());
+                   }
+                   if(player4.canMove())
+                   {
+                        game.makeMove(player4.getPlay());
+                   }
+               }
            }
        }
        finally
-       { listener.close()};
+       { listener.close();}
    }
 }
