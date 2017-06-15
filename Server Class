@@ -20,10 +20,10 @@ public class Server
            while(true)
            {
                Game game = new Game();
-               Player player1 = game.setPlayer1(new Player(listener.accept(), 1));
-               Player player2 = game.setPlayer2(new Player(listener.accept(), 2));
-               Player player3 = game.setPlayer3(new Player(listener.accept(), 3));
-               Player player4 = game.setPlayer4(new Player(listener.accept(), 4));
+               Player player1 = new Player(listener.accept(), 1);
+               Player player2 = new Player(listener.accept(), 2);
+               Player player3 = new Player(listener.accept(), 3);
+               Player player4 = new Player(listener.accept(), 4);
                game.deal(player1, player2, player3, player4);
                player1.start();
                player2.start();
@@ -31,21 +31,55 @@ public class Server
                player4.start();
                while(true)
                {
-                   if(player1.canMove())
+                   if(player1.returnMove())
                    {
                         game.makeMove(player1.getPlay());
                    }
-                   if(player2.canMove())
+                   if(player2.returnMove())
                    {
                         game.makeMove(player2.getPlay());
                    }
-                   if(player3.canMove())
+                   if(player3.returnMove())
                    {
                         game.makeMove(player3.getPlay());
                    }
-                   if(player4.canMove())
+                   if(player4.returnMove())
                    {
                         game.makeMove(player4.getPlay());
+                   }
+                   
+                   if(player1.returnComplete())
+                   {
+                        game.canComplete(player1.getPlay());
+                   }
+                   if(player2.returnComplete())
+                   {
+                        game.canComplete(player2.getPlay());
+                   }
+                   if(player3.returnComplete())
+                   {
+                        game.canComplete(player3.getPlay());
+                   }
+                   if(player4.returnComplete())
+                   {
+                        game.canComplete(player4.getPlay());
+                   }
+                   
+                   if(player1.returnPass())
+                   {
+                        game.pass();
+                   }
+                   if(player2.returnPass())
+                   {
+                        game.pass();
+                   }
+                   if(player3.returnPass())
+                   {
+                        game.pass();
+                   }
+                   if(player4.returnPass())
+                   {
+                        game.pass();
                    }
                }
            }
@@ -54,3 +88,4 @@ public class Server
        { listener.close();}
    }
 }
+
