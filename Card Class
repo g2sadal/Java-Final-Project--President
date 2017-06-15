@@ -10,18 +10,18 @@ public class Card implements Comparable<Card>
 {
 	private String suit;
     private int value;
-    private BufferedImage cardImage;
+
     
     //1 is diamonds
     //2 is clubs
     //3 is spades
     //4 is hearts
    
-    public Card(String mySuit, int myNumber, BufferedImage Card)
+    public Card(String mySuit, int myNumber)
     {
         suit = mySuit;
         value = myNumber;
-        cardImage = Card;
+        
     }
     
     public String getSuit()
@@ -33,10 +33,7 @@ public class Card implements Comparable<Card>
     {
         return value;
     }
-    public BufferedImage getImage()
-    {
-        return cardImage;
-    }
+    
     public int setValue(int number)
     {
     	value = number;
@@ -48,7 +45,7 @@ public class Card implements Comparable<Card>
     	suit = type;
     	return suit;
     }
-    
+
     
     
     public int compareTo(Card other)
