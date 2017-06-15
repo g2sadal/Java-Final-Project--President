@@ -7,14 +7,16 @@ import java.net.Socket;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Player extends Thread
+class Player extends Thread
 {
     private List<Card> hand;
     private int rank;
-    private List<Card> play;
-    Socket socket;
-    BufferedReader input;
-    PrintWriter output;
+    private List<Card> play = new ArrayList<Card>();
+    private boolean madeMove = false;
+    private Socket socket;
+    private BufferedReader input;
+    private PrintWriter output;
+    
     
     private Player (Socket s, int r)
     {
@@ -23,7 +25,7 @@ public class Player extends Thread
         try
         {
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            output.println("Welcome Player" + rank);
+            output.println("Welcome Player " + rank + ". Your cards are " + moveToString(hand));
             output.println("Waiting for other players");
         }
         catch(IOException e)
@@ -42,6 +44,19 @@ public class Player extends Thread
     	return (hand.size() == 0);
     }
     
+    private String moveToString(List<Card> move)
+    {
+        String output = "";
+        for(int i=0; i<move.size(); i++)
+        {
+            output+= move.get(i).toString() + " ";
+        }
+        return output;
+    }
+    
+    public int getRank()
+    { return rank;}
+    
     public void run()
     {
         try
@@ -57,18 +72,21 @@ public class Player extends Thread
                 if(command.startsWith("MOVE"))
                 {
                     command = command.substring(6);
-                    List<Card> move = new ArrayList<Card>();
-                    int rank;
+                    
+                    int rank = 0;
                     String suit;
                     for(int i=0; i<command.length(); i+=2)
                     {
                         suit = command.substring(i, i+1);
                         rank = Integer.parseInt(command.substring(i+1, i+2));
-                        move.add(new Card(suit, rank));
+                        play.add(new Card(suit, rank));
                     }
                    
-                    if(validMove(move)/*if true then adds move to pile*/)
-                        output.println("Player " + rank + "played " + moveString(move));
+                    if(validMove(play))
+                    {
+                        madeMove = true;
+                        output.println("Player " + rank + "played " + moveToString(play));
+                    }
                     else
                         output.println("Invalid Move");
                     if(finishedHand()/*checks if player finished their hand*/)
@@ -91,6 +109,18 @@ public class Player extends Thread
             {
             }
         }
+        
+    }
+    
+    public boolean validMove(List<Card> move)
+    {
+        
+        for(int i=0; i<move.size()-1; i++)
+        {
+            if(move.get(i)!=move.get(i+1))
+                return false;
+        }
+        return true;
     }
     
 }
