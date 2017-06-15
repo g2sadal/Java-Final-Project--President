@@ -11,7 +11,6 @@ public class Game
     private ArrayList<Card> deck;
     private List<Card> discard;
     private List<Card> pile;
-    private Player player1, player2, player3, player4;
 
     /**
      * Constructor for objects of class Game
@@ -162,20 +161,14 @@ public class Game
     
     public void deal(Player p1, Player p2, Player p3, Player p4)
     {
-    	for(int i = 0; i < deck.size() - 3; i += 4)
+    	for(int i = 0; i < deck.size(); i += 4)
     	{
     		p1.addHand(deck.get(i));
     		p2.addHand(deck.get(i+1));
     		p3.addHand(deck.get(i+2));
     		p4.addHand(deck.get(i+3));
     	}
-    }
-    
-    public void mouseClicked(MouseEvent arg) 
-	{
-		complete();
-			
-	}
+    }   
 	
 	public boolean complete()
 	{
@@ -213,26 +206,6 @@ public class Game
 		}
 	}
 	
-	public Player setPlayer1(Player p1)
-    {
-    	player1 = p1;
-	return player1;
-    }
-    public Player setPlayer2(Player p2)
-    {
-    	player2 = p2;
-	return player2;
-    }
-    public Player setPlayer3(Player p3)
-    {
-    	player3 = p3;
-	return player3;
-    }
-    public Player setPlayer4(Player p4)
-    {
-    	player4 = p4;
-	return player4;
-    }
     
     public void makeMove(List<Card> move)
     {
@@ -265,6 +238,12 @@ public class Game
     		currentPlayer += 2;
     		currentPlayer = currentPlayerLoop();
     	}
+    }
+    
+    public void pass()
+    {
+    	currentPlayer ++;
+    	currentPlayer = currentPlayerLoop();
     }
     
     public int currentPlayerLoop()
