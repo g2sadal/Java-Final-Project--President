@@ -260,11 +260,16 @@ public class Game
     {
     	if(currentPlayer > 4)
     	{
-    		currentPlayer = currentPlayer % 4;
+    		if(currentPlayer % 4 == 0)
+    		{
+    			currentPlayer = 4;
+    		}
+    		else
+    		{
+    			currentPlayer = currentPlayer % 4;
+    		}
+    		
     	}
-    	
-    	return currentPlayer;
-    }
       // this is used to print out each card in the deck 
     public void print()
     {
