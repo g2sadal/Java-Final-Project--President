@@ -1,1 +1,51 @@
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
+public class Client
+{
+    private static int PORT = 8901;
+    private Socket socket;
+    private BufferedReader in;
+    private PrintWriter out;
+    private int rank;
+    private List<Card> hand;
+    //private Display display;
+    
+    public Client(String serverAddress) throws Exception
+    {
+        socket = new Socket(serverAddres, PORT);
+        in = new BufferedReader(new InputStreamReadr(socket.getInputStream()));
+        out = new PrintWriter(socket.getOutputStream(), true);
+        
+        //display = new Display();
+    }
+    
+    public void play() throws Exception
+    {
+        String response = "";
+        
+        try
+        {
+            response = in.readLine();
+            if(response.startsWith("WELCOME"))
+            {
+                rank = Integer.parseInt(response.substring(15,17));
+                
+            }
+            
+            while (true)
+            {
+                response = in.readLine();
+                if(response.startsWith("VALID_MOVE"))
+                {
+                    
+                }
+
+            }
+        }
+    }
+}
