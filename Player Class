@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.List;
 import java.util.ArrayList;
 
-class Player extends Thread
+public class Player extends Thread
 {
     private List<Card> hand;
     private int rank;
@@ -18,7 +18,7 @@ class Player extends Thread
     private PrintWriter output;
     
     
-    private Player (Socket s, int r)
+    public Player (Socket s, int r)
     {
         rank = r;
         socket = s;
@@ -122,5 +122,12 @@ class Player extends Thread
         }
         return true;
     }
-    
+    public boolean canMove()
+    {
+        return madeMove;
+    }
+    public List<Card> getPlay()
+    {
+        return play;
+    }
 }
