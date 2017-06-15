@@ -18,6 +18,9 @@ public class Game
      */
     public Game() throws IOException
     {
+    // creates all instances of cards lists. deck is for all 52 cards. pile is for cards that are played. discard are all cards that are no longer pertinent- cards that aren't within 3 turns.
+        //initializes deck with all types of cards.
+	
         firstGame = true;
         deck = new ArrayList<Card>(); 
         discard = new ArrayList<Card>();
@@ -150,6 +153,8 @@ public class Game
     	return deck;
     }
     
+    // randomly puts the deck in a new order so that the array is no longer in clumps based on suit type. Now, the locations are mixed and the deck has been randomized.
+    
     public void shuffle()
     {
     	
@@ -161,7 +166,7 @@ public class Game
     		deck.set(index, temp);
     	}
     }
-    
+        // distributes 13 random cards to each of the 4 players.
     public void deal(Player p1, Player p2, Player p3, Player p4)
     {
     	for(int i = 0; i < deck.size() - 3; i += 4)
@@ -174,6 +179,8 @@ public class Game
     }
     
 	
+    
+   // allows a player to complete the remaining cards of a value. If a player has 3 2's and one has been played, the complete method will check for any variation that adds to 4 and allow the player to move or to not.
 	public boolean canComplete(List<Card> hand)
 	{
 		int countPile = 0;
@@ -215,7 +222,7 @@ public class Game
 		return false;
 	}
 	
-	
+	 // checks if player's move is valid in the case that he/she tries playing singles instead of doubles or when it's not their turn, or etc.
     public void makeMove(List<Card> move)
     {
         if(move.get(0).compareTo(pile.get(2))>=0)
@@ -236,7 +243,7 @@ public class Game
         }
         
     }
-    
+    // if 2 cards of the same value are consecutively played, the next player is skipped. Ex: If player 1 plays a 2 and player 2 plays a 2, then player 3 is skipped.
     public void skip()
     {
     	Card currentCard = pile.get(pile.size()-2);
@@ -248,7 +255,7 @@ public class Game
     		currentPlayer = currentPlayerLoop();
     	}
     }
-    
+     // when the increment passes 4, the currentPlayer must go back down to 1, so the cycle of moves can begin again.
     public int currentPlayerLoop()
     {
     	if(currentPlayer > 4)
@@ -258,7 +265,7 @@ public class Game
     	
     	return currentPlayer;
     }
-    
+      // this is used to print out each card in the deck 
     public void print()
     {
     	String output = "";
