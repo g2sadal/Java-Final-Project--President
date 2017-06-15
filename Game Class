@@ -23,121 +23,121 @@ public class Game
         discard = new ArrayList<Card>();
         pile = new ArrayList<Card>(); 
         
-       Card Clubs10 = new Card("Clubs", 10);
+       Card Clubs10 = new Card("C", 10);
        deck.add(Clubs10);
- 	   Card Diamonds10 = new Card("Diamonds", 10);
+ 	   Card Diamonds10 = new Card("D", 10);
  	   deck.add(Diamonds10);
- 	   Card Spades10 = new Card("Spades", 10);
+ 	   Card Spades10 = new Card("S", 10);
  	   deck.add(Spades10);
- 	   Card Hearts10 = new Card("Hearts", 10);
+ 	   Card Hearts10 = new Card("H", 10);
  	   deck.add(Hearts10);
  	   
- 	   Card Clubs2 = new Card("Clubs", 15);
+ 	   Card Clubs2 = new Card("C", 15);
  	   deck.add(Clubs2);
- 	   Card Diamonds2 = new Card("Diamonds", 15);
+ 	   Card Diamonds2 = new Card("D", 15);
  	   deck.add(Diamonds2);
- 	   Card Spades2 = new Card("Spades", 15);
+ 	   Card Spades2 = new Card("S", 15);
  	   deck.add(Spades2);
- 	   Card Hearts2 = new Card("Hearts", 15);
+ 	   Card Hearts2 = new Card("H", 15);
  	   deck.add(Hearts2);
  	   
- 	   Card Clubs3 = new Card("Clubs", 3);
+ 	   Card Clubs3 = new Card("C", 3);
  	   deck.add(Clubs3);
- 	   Card Diamonds3 = new Card("Diamonds", 3);
+ 	   Card Diamonds3 = new Card("D", 3);
  	   deck.add(Diamonds3);
- 	   Card Spades3 = new Card("Spades", 3);
+ 	   Card Spades3 = new Card("S", 3);
  	   deck.add(Spades3);
- 	   Card Hearts3 = new Card("Hearts", 3);
+ 	   Card Hearts3 = new Card("H", 3);
  	   deck.add(Hearts3);
  	    
- 	   Card Clubs4 = new Card("Clubs", 4);
+ 	   Card Clubs4 = new Card("C", 4);
  	   deck.add(Clubs4);
- 	   Card Diamonds4 = new Card("Diamonds", 4);
+ 	   Card Diamonds4 = new Card("D", 4);
  	   deck.add(Diamonds4);
- 	   Card Spades4 = new Card("Spades", 4);
+ 	   Card Spades4 = new Card("S", 4);
  	   deck.add(Spades4);
- 	   Card Hearts4 = new Card("Hearts", 4);
+ 	   Card Hearts4 = new Card("H", 4);
  	   deck.add(Hearts4);
  	   
- 	   Card Clubs5 = new Card("Clubs", 5);
+ 	   Card Clubs5 = new Card("C", 5);
  	   deck.add(Clubs5);
- 	   Card Diamonds5 = new Card("Diamonds", 5);
+ 	   Card Diamonds5 = new Card("D", 5);
  	   deck.add(Diamonds5);
- 	   Card Spades5 = new Card("Spades", 5);
+ 	   Card Spades5 = new Card("S", 5);
  	   deck.add(Spades5);
- 	   Card Hearts5 = new Card("Hearts", 5);
+ 	   Card Hearts5 = new Card("H", 5);
  	   deck.add(Hearts5);
  	   
- 	   Card Clubs6 = new Card("Clubs", 6);
+ 	   Card Clubs6 = new Card("C", 6);
  	   deck.add(Clubs6);
- 	   Card Diamonds6 = new Card("Diamonds", 6);
+ 	   Card Diamonds6 = new Card("D", 6);
  	   deck.add(Diamonds6);
- 	   Card Spades6 = new Card("Spades", 6);
+ 	   Card Spades6 = new Card("S", 6);
  	   deck.add(Spades6);
- 	   Card Hearts6 = new Card("Hearts", 6);
+ 	   Card Hearts6 = new Card("H", 6);
  	   deck.add(Hearts6);
  	   
- 	   Card Clubs7 = new Card("Clubs", 7);
+ 	   Card Clubs7 = new Card("C", 7);
  	   deck.add(Clubs7);
- 	   Card Diamonds7 = new Card("Diamonds", 7);
+ 	   Card Diamonds7 = new Card("D", 7);
  	   deck.add(Diamonds7);
- 	   Card Spades7 = new Card("Spades", 7);
+ 	   Card Spades7 = new Card("S", 7);
  	   deck.add(Spades7);
- 	   Card Hearts7 = new Card("Hearts", 7);
+ 	   Card Hearts7 = new Card("H", 7);
  	   deck.add(Hearts7);
  	   
- 	   Card Clubs8 = new Card("Clubs", 8);
+ 	   Card Clubs8 = new Card("C", 8);
  	   deck.add(Clubs8);
- 	   Card Diamonds8 = new Card("Diamonds", 8);
+ 	   Card Diamonds8 = new Card("D", 8);
  	   deck.add(Diamonds8);
- 	   Card Spades8 = new Card("Spades", 8);
+ 	   Card Spades8 = new Card("S", 8);
  	   deck.add(Spades8);
- 	   Card Hearts8 = new Card("Hearts", 8);
+ 	   Card Hearts8 = new Card("H", 8);
  	   deck.add(Hearts8);
  	   
- 	   Card Clubs9 = new Card("Clubs", 9);
+ 	   Card Clubs9 = new Card("C", 9);
  	   deck.add(Clubs9);
- 	   Card Diamonds9 = new Card("Diamonds", 9);
+ 	   Card Diamonds9 = new Card("D", 9);
  	   deck.add(Diamonds9);
- 	   Card Spades9 = new Card("Spades", 9);
+ 	   Card Spades9 = new Card("S", 9);
  	   deck.add(Spades9);
- 	   Card Hearts9 = new Card("Hearts", 9);
+ 	   Card Hearts9 = new Card("H", 9);
  	   deck.add(Hearts9);
  	   
- 	   Card ClubsAce = new Card("Clubs", 14);
+ 	   Card ClubsAce = new Card("C", 14);
  	   deck.add(ClubsAce);
- 	   Card DiamondsAce = new Card("Diamonds", 14);
+ 	   Card DiamondsAce = new Card("D", 14);
  	   deck.add(DiamondsAce);
- 	   Card SpadesAce = new Card("Spades", 14);
+ 	   Card SpadesAce = new Card("S", 14);
  	   deck.add(SpadesAce);
- 	   Card HeartsAce = new Card("Hearts", 14);
+ 	   Card HeartsAce = new Card("H", 14);
  	   deck.add(HeartsAce);
  	   
- 	   Card ClubsJack = new Card("Clubs", 11);
+ 	   Card ClubsJack = new Card("C", 11);
  	   deck.add(ClubsJack);
- 	   Card DiamondsJack = new Card("Diamonds", 11);
+ 	   Card DiamondsJack = new Card("", 11);
  	   deck.add(DiamondsJack);
  	   Card SpadesJack = new Card("Spades", 11);
  	   deck.add(SpadesJack);
  	   Card HeartsJack = new Card("Hearts", 11);
  	   deck.add(HeartsJack);
  	   
- 	   Card ClubsKing = new Card("Clubs", 13);
+ 	   Card ClubsKing = new Card("C", 13);
  	   deck.add(ClubsKing);
- 	   Card DiamondsKing = new Card("Diamonds", 13);
+ 	   Card DiamondsKing = new Card("D", 13);
  	   deck.add(DiamondsKing);
- 	   Card SpadesKing = new Card("Spades", 13);
+ 	   Card SpadesKing = new Card("S", 13);
  	   deck.add(SpadesKing);
- 	   Card HeartsKing = new Card("Hearts", 13);
+ 	   Card HeartsKing = new Card("H", 13);
  	   deck.add(HeartsKing);
  	   
- 	   Card ClubsQueen = new Card("Clubs", 12);
+ 	   Card ClubsQueen = new Card("C", 12);
  	   deck.add(ClubsQueen);
- 	   Card DiamondsQueen = new Card("Diamonds", 12);
+ 	   Card DiamondsQueen = new Card("D", 12);
  	   deck.add(DiamondsQueen);
- 	   Card SpadesQueen = new Card("Spades", 12);
+ 	   Card SpadesQueen = new Card("S", 12);
  	   deck.add(SpadesQueen);
- 	   Card HeartsQueen = new Card("Hearts", 12);  
+ 	   Card HeartsQueen = new Card("H", 12);  
  	   deck.add(HeartsQueen);
  	   
     }
@@ -234,36 +234,25 @@ public class Game
 	return player4;
     }
     
-    public synchronized boolean validMove(List<Card> move, Player player)
+    public void makeMove(List<Card> move)
     {
-    	boolean sameCard = true;
-    	for(int i=0; i<move.size()-1; i++)
-    	{
-    		if(move.get(i)!=move.get(i+1))
-			sameCard=false;
-    	}
-    	if(sameCard && player.getRank()==currentPlayer && move.get(i).compareTo(pile.get(2))>0)
-    	{
-
-    		for(Card card: move)
-    		{
-    			pile.add(card);
-    		}
-		
-    		if(move.get(i).getValue()==15)
-    		{
-    			pile.removeRange(0, pile.size()-1);
-    		}
-			
-    		while(pile.size()>3)
-    		{
-    			pile.remove(0);
-    		}
-    		currentPlayer++;
-    		currentPlayer = currentPlayerLoop();
-    		return true;
-    	}
-	 return false;
+        if(move.get(0).compareTo(pile.get(2))>=0)
+        {
+            for(Card card: move)
+            {
+                pile.add(card);
+            }
+        
+            if(move.get(move.size()-1).getValue()==15)
+                pile.clear();
+            
+            while(pile.size()>3)
+            {
+                    pile.remove(0);
+            }
+            currentPlayer++;
+        }
+        
     }
     
     public void skip()
