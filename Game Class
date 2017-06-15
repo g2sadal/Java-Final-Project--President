@@ -11,6 +11,7 @@ public class Game
     private ArrayList<Card> deck;
     private List<Card> discard;
     private List<Card> pile;
+    private Player player1, player2, player3, player4;
 
     /**
      * Constructor for objects of class Game
@@ -20,9 +21,11 @@ public class Game
         firstGame = true;
         deck = new ArrayList<Card>(); 
         discard = new ArrayList<Card>();
-        pile = new ArrayList<Card>(); 
+        pile = new ArrayList<Card>();
         
-       Card Clubs10 = new Card("C", 10);
+        
+        
+        Card Clubs10 = new Card("C", 10);
        deck.add(Clubs10);
  	   Card Diamonds10 = new Card("D", 10);
  	   deck.add(Diamonds10);
@@ -161,16 +164,17 @@ public class Game
     
     public void deal(Player p1, Player p2, Player p3, Player p4)
     {
-    	for(int i = 0; i < deck.size(); i += 4)
+    	for(int i = 0; i < deck.size() - 3; i += 4)
     	{
     		p1.addHand(deck.get(i));
     		p2.addHand(deck.get(i+1));
     		p3.addHand(deck.get(i+2));
     		p4.addHand(deck.get(i+3));
     	}
-    }   
+    }
+    
 	
-	public boolean complete()
+	public boolean canComplete(List<Card> hand)
 	{
 		int countPile = 0;
 		
@@ -179,7 +183,7 @@ public class Game
 		int total = 0;
 		
 		Card currentCard = pile.get(pile.size()-1);
-		for( int i = pile.size(); i > pile.size() - 4; i--)
+		for(int i = pile.size()-1; i > pile.size() - 4; i--)
 		{
 			if(currentCard == pile.get(i-1))
 			{
@@ -201,12 +205,17 @@ public class Game
 			{
 				return false;
 			}
+			else
+			{
+			    pile.clear();
+			}
 			
 			return true;
 		}
+		return false;
 	}
 	
-    
+	
     public void makeMove(List<Card> move)
     {
         if(move.get(0).compareTo(pile.get(2))>=0)
@@ -240,12 +249,6 @@ public class Game
     	}
     }
     
-    public void pass()
-    {
-    	currentPlayer ++;
-    	currentPlayer = currentPlayerLoop();
-    }
-    
     public int currentPlayerLoop()
     {
     	if(currentPlayer > 4)
@@ -266,6 +269,12 @@ public class Game
     	
     	System.out.print(output);
     }
-   
+    public void pass()
+    {
+    	currentPlayer ++;
+    	currentPlayer = currentPlayerLoop();
+    }
+    
+ 
     	
 }
