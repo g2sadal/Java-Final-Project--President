@@ -321,5 +321,19 @@ public class Client
 			{
 			    out.println("PASS");
 			}
+			public static void main(String[] args) throws Exception
+			{
+			    while(true)
+			    {
+			        String serverAddress;
+			        if(args.length == 0)
+			         serverAddress = "localhost";
+			        else
+			         args[1];
+			         
+			        Client client = new Client(serverAddress);
+			        client.play();
+			    }
+			}
 		
     }
