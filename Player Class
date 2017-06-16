@@ -83,7 +83,7 @@ public class Player extends Thread
                 {
                     command = command.substring(6);
                     madeMove = true;
-                    output.println("Player " + rank + "played " + moveToString(play));
+                    output.println("VALID_MOVE: Player " + rank + " played " + moveToString(play));
         
                     if(finishedHand()/*checks if player finished their hand*/)
                         output.println("Player " + rank + "is done");
@@ -91,12 +91,12 @@ public class Player extends Thread
                 else if(command.startsWith("COMPLETION"))
                 {
                     madeComplete = true;
-                    output.println("Player " + rank + "completed");
+                    output.println("VALID_COMPLETE: Player " + rank + "completed");
                 }
                 else if(command.startsWith("PASS"))
                 {
                     madePass = true;
-                    output.println("Player " + rank + "passed");
+                    output.println("PASS: Player " + rank + "passed");
                 }
                 
             }
@@ -118,6 +118,10 @@ public class Player extends Thread
         
     }
     
+    public otherPlayerMoved(int playerRank, List<Card> move)
+    {
+        output.println("OPPONENT_MOVED: Player " + playerRank + " moved " + moveToString(move)):
+    }
 
     public boolean returnMove()
     {
