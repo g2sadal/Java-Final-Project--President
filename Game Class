@@ -1,303 +1,606 @@
 import java.util.List;
+
 import javax.imageio.ImageIO;
+
 import java.io.File;
+
 import java.io.IOException;
+
 import java.util.ArrayList;
 
+
+
 public class Game 
+
 {
+
 	private boolean firstGame;
+
     private int currentPlayer;
+
     private ArrayList<Card> deck;
+
     private List<Card> pile;
+
     private Player player1, player2, player3, player4;
 
+
+
     /**
+
      * Constructor for objects of class Game
+
      */
+
     public Game() throws IOException
+
     {
+
         firstGame = true;
+
         deck = new ArrayList<Card>(); 
+
         pile = new ArrayList<Card>();
+
         
+
         
+
         
+
         Card Clubs10 = new Card("C", 10);
+
        deck.add(Clubs10);
+
  	   Card Diamonds10 = new Card("D", 10);
+
  	   deck.add(Diamonds10);
+
  	   Card Spades10 = new Card("S", 10);
+
  	   deck.add(Spades10);
+
  	   Card Hearts10 = new Card("H", 10);
+
  	   deck.add(Hearts10);
+
  	   
+
  	   Card Clubs2 = new Card("C", 15);
+
  	   deck.add(Clubs2);
+
  	   Card Diamonds2 = new Card("D", 15);
+
  	   deck.add(Diamonds2);
+
  	   Card Spades2 = new Card("S", 15);
+
  	   deck.add(Spades2);
+
  	   Card Hearts2 = new Card("H", 15);
+
  	   deck.add(Hearts2);
+
  	   
+
  	   Card Clubs3 = new Card("C", 3);
+
  	   deck.add(Clubs3);
+
  	   Card Diamonds3 = new Card("D", 3);
+
  	   deck.add(Diamonds3);
+
  	   Card Spades3 = new Card("S", 3);
+
  	   deck.add(Spades3);
+
  	   Card Hearts3 = new Card("H", 3);
+
  	   deck.add(Hearts3);
+
  	    
+
  	   Card Clubs4 = new Card("C", 4);
+
  	   deck.add(Clubs4);
+
  	   Card Diamonds4 = new Card("D", 4);
+
  	   deck.add(Diamonds4);
+
  	   Card Spades4 = new Card("S", 4);
+
  	   deck.add(Spades4);
+
  	   Card Hearts4 = new Card("H", 4);
+
  	   deck.add(Hearts4);
+
  	   
+
  	   Card Clubs5 = new Card("C", 5);
+
  	   deck.add(Clubs5);
+
  	   Card Diamonds5 = new Card("D", 5);
+
  	   deck.add(Diamonds5);
+
  	   Card Spades5 = new Card("S", 5);
+
  	   deck.add(Spades5);
+
  	   Card Hearts5 = new Card("H", 5);
+
  	   deck.add(Hearts5);
+
  	   
+
  	   Card Clubs6 = new Card("C", 6);
+
  	   deck.add(Clubs6);
+
  	   Card Diamonds6 = new Card("D", 6);
+
  	   deck.add(Diamonds6);
+
  	   Card Spades6 = new Card("S", 6);
+
  	   deck.add(Spades6);
+
  	   Card Hearts6 = new Card("H", 6);
+
  	   deck.add(Hearts6);
+
  	   
+
  	   Card Clubs7 = new Card("C", 7);
+
  	   deck.add(Clubs7);
+
  	   Card Diamonds7 = new Card("D", 7);
+
  	   deck.add(Diamonds7);
+
  	   Card Spades7 = new Card("S", 7);
+
  	   deck.add(Spades7);
+
  	   Card Hearts7 = new Card("H", 7);
+
  	   deck.add(Hearts7);
+
  	   
+
  	   Card Clubs8 = new Card("C", 8);
+
  	   deck.add(Clubs8);
+
  	   Card Diamonds8 = new Card("D", 8);
+
  	   deck.add(Diamonds8);
+
  	   Card Spades8 = new Card("S", 8);
+
  	   deck.add(Spades8);
+
  	   Card Hearts8 = new Card("H", 8);
+
  	   deck.add(Hearts8);
+
  	   
+
  	   Card Clubs9 = new Card("C", 9);
+
  	   deck.add(Clubs9);
+
  	   Card Diamonds9 = new Card("D", 9);
+
  	   deck.add(Diamonds9);
+
  	   Card Spades9 = new Card("S", 9);
+
  	   deck.add(Spades9);
+
  	   Card Hearts9 = new Card("H", 9);
+
  	   deck.add(Hearts9);
+
  	   
+
  	   Card ClubsAce = new Card("C", 14);
+
  	   deck.add(ClubsAce);
+
  	   Card DiamondsAce = new Card("D", 14);
+
  	   deck.add(DiamondsAce);
+
  	   Card SpadesAce = new Card("S", 14);
+
  	   deck.add(SpadesAce);
+
  	   Card HeartsAce = new Card("H", 14);
+
  	   deck.add(HeartsAce);
+
  	   
+
  	   Card ClubsJack = new Card("C", 11);
+
  	   deck.add(ClubsJack);
+
  	   Card DiamondsJack = new Card("", 11);
+
  	   deck.add(DiamondsJack);
+
  	   Card SpadesJack = new Card("Spades", 11);
+
  	   deck.add(SpadesJack);
+
  	   Card HeartsJack = new Card("Hearts", 11);
+
  	   deck.add(HeartsJack);
+
  	   
+
  	   Card ClubsKing = new Card("C", 13);
+
  	   deck.add(ClubsKing);
+
  	   Card DiamondsKing = new Card("D", 13);
+
  	   deck.add(DiamondsKing);
+
  	   Card SpadesKing = new Card("S", 13);
+
  	   deck.add(SpadesKing);
+
  	   Card HeartsKing = new Card("H", 13);
+
  	   deck.add(HeartsKing);
+
  	   
+
  	   Card ClubsQueen = new Card("C", 12);
+
  	   deck.add(ClubsQueen);
+
  	   Card DiamondsQueen = new Card("D", 12);
+
  	   deck.add(DiamondsQueen);
+
  	   Card SpadesQueen = new Card("S", 12);
+
  	   deck.add(SpadesQueen);
+
  	   Card HeartsQueen = new Card("H", 12);  
+
  	   deck.add(HeartsQueen);
+
  	   
-    }
-    
-    
-    public ArrayList<Card> getDeck()
-    {
-    	return deck;
-    }
-    
-    public void shuffle()
-    {
-    	
-    	for(int i = 0; i < deck.size(); i++)
-    	{
-    		int index = (int)(Math.random() * deck.size());
-    		Card temp = deck.get(i);
-    		deck.set(i, deck.get(index));
-    		deck.set(index, temp);
-    	}
-    }
-    
-    public void deal(Player p1, Player p2, Player p3, Player p4)
-    {
-    	for(int i = 0; i < deck.size() - 3; i += 4)
-    	{
-    		p1.addHand(deck.get(i));
-    		p2.addHand(deck.get(i+1));
-    		p3.addHand(deck.get(i+2));
-    		p4.addHand(deck.get(i+3));
-    	}
-    }
-    
-	
-	public boolean canComplete(List<Card> hand)
-	{
-		int countPile = 0;
-		
-		int countPlayerHand = 0;
-		
-		int total = 0;
-		
-		Card currentCard = pile.get(pile.size()-1);
-		for(int i = pile.size()-1; i > pile.size() - 4; i--)
-		{
-			if(currentCard == pile.get(i-1))
-			{
-				countPile += 1;
-			}
-		}
-		if (countPile!= 0) 
-		{
-			for( int i = 0; i < hand.size(); i++)
-			{
-				if(hand.get(i).equals(currentCard))
-				{
-					countPlayerHand +=1;
-				}
-			}
-			total = countPlayerHand + countPile;
-			
-			if(total != 4)
-			{
-				return false;
-			}
-			else
-			{
-			    pile.clear();
-			}
-			
-			return true;
-		}
-		return false;
-	}
-	
-	
-    public void makeMove(List<Card> move)
-    {
-        if(move.get(0).compareTo(pile.get(2))>=0)
-        {
-            for(Card card: move)
-            {
-                pile.add(card);
-            }
-        
-            if(move.get(move.size()-1).getValue()==15)
-                pile.clear();
-            
-            while(pile.size()>3)
-            {
-                    pile.remove(0);
-            }
-            
-            if (currentPlayer == 1)
-            {
-                player2.otherPlayerMoved(currentPlayer, move);
-                player3.otherPlayerMoved(currentPlayer, move);
-                player4.otherPlayerMoved(currentPlayer, move);
-            }
-            else if (currentPlayer == 2)
-            {
-                player1.otherPlayerMoved(currentPlayer, move);
-                player3.otherPlayerMoved(currentPlayer, move);
-                player4.otherPlayerMoved(currentPlayer, move);
-            }
-            else if (currentPlayer == 3)
-            {
-                player2.otherPlayerMoved(currentPlayer, move);
-                player1.otherPlayerMoved(currentPlayer, move);
-                player4.otherPlayerMoved(currentPlayer, move);
-            }
-            else if (currentPlayer == 4)
-            {
-                player2.otherPlayerMoved(currentPlayer, move);
-                player3.otherPlayerMoved(currentPlayer, move);
-                player1.otherPlayerMoved(currentPlayer, move);
-            }
-            currentPlayer++;
-        }
 
     }
+
     
-    public void skip()
+
+    
+
+    public ArrayList<Card> getDeck()
+
     {
-    	Card currentCard = pile.get(pile.size()-2);
-    	Card nextCard = pile.get(pile.size()-1);
-    	
-    	if(currentCard == nextCard)
-    	{
-    		currentPlayer += 2;
-    		currentPlayer = currentPlayerLoop();
-    	}
+
+    	return deck;
+
     }
+
     
-    public int currentPlayerLoop()
+
+    public void shuffle()
+
     {
-    	if(currentPlayer > 4)
-    	{
-    		currentPlayer = currentPlayer % 4;
-    	}
+
     	
-    	return currentPlayer;
-    }
-    
-    public void print()
-    {
-    	String output = "";
+
     	for(int i = 0; i < deck.size(); i++)
+
     	{
-    		 output += deck.get(i);
+
+    		int index = (int)(Math.random() * deck.size());
+
+    		Card temp = deck.get(i);
+
+    		deck.set(i, deck.get(index));
+
+    		deck.set(index, temp);
+
     	}
-    	
-    	System.out.print(output);
+
     }
-    public void pass()
-    {
-    	currentPlayer ++;
-    	currentPlayer = currentPlayerLoop();
-    }
+
     
- 
+
+    public void deal(Player p1, Player p2, Player p3, Player p4)
+
+    {
+
+    	for(int i = 0; i < deck.size() - 3; i += 4)
+
+    	{
+
+    		p1.addHand(deck.get(i));
+
+    		p2.addHand(deck.get(i+1));
+
+    		p3.addHand(deck.get(i+2));
+
+    		p4.addHand(deck.get(i+3));
+
+    	}
+    	System.out.println(p1.moveToString(p1.getHand()));
+
+    }
+
+    
+
+	
+
+	public boolean canComplete(List<Card> hand)
+
+	{
+
+		int countPile = 0;
+
+		
+
+		int countPlayerHand = 0;
+
+		
+
+		int total = 0;
+
+		
+
+		Card currentCard = pile.get(pile.size()-1);
+
+		for(int i = pile.size()-1; i > pile.size() - 4; i--)
+
+		{
+
+			if(currentCard == pile.get(i-1))
+
+			{
+
+				countPile += 1;
+
+			}
+
+		}
+
+		if (countPile!= 0) 
+
+		{
+
+			for( int i = 0; i < hand.size(); i++)
+
+			{
+
+				if(hand.get(i).equals(currentCard))
+
+				{
+
+					countPlayerHand +=1;
+
+				}
+
+			}
+
+			total = countPlayerHand + countPile;
+
+			
+
+			if(total != 4)
+
+			{
+
+				return false;
+
+			}
+
+			else
+
+			{
+
+			    pile.clear();
+
+			}
+
+			
+
+			return true;
+
+		}
+
+		return false;
+
+	}
+
+	
+
+	
+
+    public void makeMove(List<Card> move)
+
+    {
+
+        if(move.get(0).compareTo(pile.get(2))>=0)
+
+        {
+
+            for(Card card: move)
+
+            {
+
+                pile.add(card);
+
+            }
+
+        
+
+            if(move.get(move.size()-1).getValue()==15)
+
+                pile.clear();
+
+            
+
+            while(pile.size()>3)
+
+            {
+
+                    pile.remove(0);
+
+            }
+
+            
+
+            if (currentPlayer == 1)
+
+            {
+
+                player2.otherPlayerMoved(currentPlayer, move);
+
+                player3.otherPlayerMoved(currentPlayer, move);
+
+                player4.otherPlayerMoved(currentPlayer, move);
+
+            }
+
+            else if (currentPlayer == 2)
+
+            {
+
+                player1.otherPlayerMoved(currentPlayer, move);
+
+                player3.otherPlayerMoved(currentPlayer, move);
+
+                player4.otherPlayerMoved(currentPlayer, move);
+
+            }
+
+            else if (currentPlayer == 3)
+
+            {
+
+                player2.otherPlayerMoved(currentPlayer, move);
+
+                player1.otherPlayerMoved(currentPlayer, move);
+
+                player4.otherPlayerMoved(currentPlayer, move);
+
+            }
+
+            else if (currentPlayer == 4)
+
+            {
+
+                player2.otherPlayerMoved(currentPlayer, move);
+
+                player3.otherPlayerMoved(currentPlayer, move);
+
+                player1.otherPlayerMoved(currentPlayer, move);
+
+            }
+
+            currentPlayer++;
+
+        }
+
+
+
+    }
+
+    
+
+    public void skip()
+
+    {
+
+    	Card currentCard = pile.get(pile.size()-2);
+
+    	Card nextCard = pile.get(pile.size()-1);
+
     	
+
+    	if(currentCard == nextCard)
+
+    	{
+
+    		currentPlayer += 2;
+
+    		currentPlayer = currentPlayerLoop();
+
+    	}
+
+    }
+
+    
+
+    public int currentPlayerLoop()
+
+    {
+
+    	if(currentPlayer > 4)
+
+    	{
+
+    		currentPlayer = currentPlayer % 4;
+
+    	}
+
+    	
+
+    	return currentPlayer;
+
+    }
+
+    
+
+    public void print()
+
+    {
+
+    	String output = "";
+
+    	for(int i = 0; i < deck.size(); i++)
+
+    	{
+
+    		 output += deck.get(i);
+
+    	}
+
+    	
+
+    	System.out.print(output);
+
+    }
+
+    public void pass()
+
+    {
+
+    	currentPlayer ++;
+
+    	currentPlayer = currentPlayerLoop();
+
+    }
+
+    
+
+ 
+
+    	
+
 }
