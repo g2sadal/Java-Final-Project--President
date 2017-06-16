@@ -263,6 +263,8 @@ public class Client
                     }
                     else if(response.length()>4)
                     {
+                        label.setIcon(label_2.getIcon());
+                        
                         Image x= new ImageIcon(this.getClass().getResource(response.substring(0, indexOf(" "))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT)); 
                         label_2.setIcon(new ImageIcon(x));
                         response = response.substring(response.substring(indexOf(" ")+1));
@@ -273,8 +275,11 @@ public class Client
                     }
                     else
                     {
+                        label.setIcon(label_1.getIcon());
+                        label_1.setIcon(label_2.getIcon());
+                        
                         x = new ImageIcon(this.getClass().getResource(response.substring(0, indexOf(" "))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT)); 
-                        label.setIcon(new ImageIcon(x));
+                        label_2.setIcon(new ImageIcon(x));
                         response = response.substring(response.substring(indexOf(" ")+1));
                     }
                 }
@@ -293,7 +298,7 @@ public class Client
 			    String output = "";
     	for(int i = 0; i < cards.size(); i++)
     	{
-    		 output += cards.get(i).toString();
+    		 output += cards.get(i).toString() + " ";
     	}
     	
 			    out.println("MOVE " + output);
@@ -305,7 +310,7 @@ public class Client
 				    String output = "";
     	for(int i = 0; i < cards.size(); i++)
     	{
-    		 output += cards.get(i).toString();
+    		 output += cards.get(i).toString() + " ";
     	}
     	
 			    out.println("COMPLETION " + output);
