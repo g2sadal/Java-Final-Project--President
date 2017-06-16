@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 public class Card implements Comparable<Card>
 {
-	private String suit;
+    private String suit;
     private int value;
 
     
@@ -21,7 +21,6 @@ public class Card implements Comparable<Card>
     {
         suit = mySuit;
         value = myNumber;
-        
     }
     
     public String getSuit()
