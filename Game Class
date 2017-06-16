@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Game 
 {
-    private boolean firstGame;
+	private boolean firstGame;
     private int currentPlayer;
     private ArrayList<Card> deck;
     private List<Card> pile;
@@ -19,7 +19,6 @@ public class Game
     {
         firstGame = true;
         deck = new ArrayList<Card>(); 
-        discard = new ArrayList<Card>();
         pile = new ArrayList<Card>();
         
         
