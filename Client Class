@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 
 import java.net.Socket;
 
-import javax.imageio.ImageIO;
+
 
 import javax.swing.ImageIcon;
 
@@ -18,63 +18,27 @@ import javax.swing.JButton;
 
 import java.util.List;
 
-import java.util.ArrayList;
+
 
 import javax.swing.JFrame;
 
-import java.awt.EventQueue;
-
-import java.awt.image.BufferedImage;
-
-import java.io.File;
-
-import java.io.IOException;
 
 
 
-import javax.imageio.ImageIO;
 
-import javax.swing.ImageIcon;
-
-import javax.swing.JButton;
-
-import javax.swing.JFrame;
-
-import java.awt.BorderLayout;
-
-import java.awt.GridBagLayout;
-
-import java.awt.GridBagConstraints;
-
-import java.awt.Insets;
-
-import java.awt.event.ActionListener;
-
-import java.awt.event.ActionEvent;
-
-import java.awt.GridLayout;
 
 import java.awt.Image;
 
 
 
-import javax.swing.JPanel;
 
-import javax.swing.JTextPane;
-
-import javax.swing.JEditorPane;
 
 import javax.swing.JLabel;
 
-import javax.swing.JScrollBar;
-
-import java.awt.event.MouseAdapter;
-
-import java.awt.event.MouseEvent;
 
 import java.awt.Color;
 
-import javax.swing.JToggleButton;
+
 
 
 
@@ -82,7 +46,7 @@ public class Client
 
 {
 
-    private static int PORT = 8901;
+    private static int PORT = 2222;
 
     private Socket socket;
 
@@ -90,11 +54,11 @@ public class Client
 
     private PrintWriter out;
     
-    private int rank;
 
     private List<Card> play;
 
     private List<Card> hand;
+    private JFrame frame;
 
     private JButton btnNewButton = new  JButton("New button");   
 
@@ -150,7 +114,7 @@ public class Client
 
         
 
-        JFrame frame = new JFrame();
+        frame = new JFrame();
 
         frame.getContentPane().setBackground(new Color(0, 100, 0));
 
@@ -485,7 +449,7 @@ public class Client
 
             {
 
-                rank = Integer.parseInt(response.substring(15,17));
+
 
                 response = response.substring(33);
 
@@ -737,7 +701,7 @@ public class Client
 
 			    {
 
-			        String serverAddress;
+			        String serverAddress =" ";
 
 			        if(args.length == 0)
 
@@ -750,6 +714,7 @@ public class Client
 			         
 
 			        Client client = new Client(serverAddress);
+			        client.frame.setVisible(true);
 
 			        client.play();
 
