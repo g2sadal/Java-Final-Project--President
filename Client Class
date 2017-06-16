@@ -48,21 +48,23 @@ public class Client
     private List<Card> hand;
     private JButton btnNewButton = new  JButton("New button");   
     private JButton button = new JButton("New button");  
-    private JButton button_1 = new JButton("New button");
-    private JButton button_2 = new JButton("New button");
-    private JButton button_3 = new JButton("New button");
-    private JButton button_4 = new JButton("New button");
-    private JButton button_5 = new JButton("New button");
-    private JButton button_6 = new JButton("New button");
-    private JButton button_7 = new JButton("New button");
-    private JButton button_8 = new JButton("New button");
-    private JButton button_9 = new JButton("New button");
-    private JButton button_10 = new JButton("New button");
-    private JButton button_11 = new JButton("New button");
+    private JButton button1 = new JButton("New button");
+    private JButton button2 = new JButton("New button");
+    private JButton button3 = new JButton("New button");
+    private JButton button4 = new JButton("New button");
+    private JButton button5 = new JButton("New button");
+    private JButton button6 = new JButton("New button");
+    private JButton button7 = new JButton("New button");
+    private JButton button8 = new JButton("New button");
+    private JButton button9 = new JButton("New button");
+    private JButton button10 = new JButton("New button");
+    private JButton button11 = new JButton("New button");
     private JButton btnCompletion = new JButton("Completion");
     private JButton btnPass = new JButton("Pass");
     private JButton btnMakeMove = new JButton("Make Move");
-    
+    private JLabel label = new JLabel("New label");
+    private JLabel label_1 = new JLabel("New label");
+    private JLabel label_2 = new JLabel("New label");
     
     
     public Client(String serverAddress) throws Exception
@@ -86,51 +88,52 @@ public class Client
         frame.getContentPane().add(button);
         
         
-        button_1.setBounds(98, 206, 49, 76);
-        frame.getContentPane().add(button_1);
+        button1.setBounds(98, 206, 49, 76);
+        frame.getContentPane().add(button1);
         
         
-        button_2.setBounds(146, 206, 49, 76);
-        frame.getContentPane().add(button_2);
+        button2.setBounds(146, 206, 49, 76);
+        frame.getContentPane().add(button2);
         
         
-        button_3.setBounds(196, 206, 49, 76);
-        frame.getContentPane().add(button_3);
-        
- 
-        button_4.setBounds(247, 206, 49, 76);
-        frame.getContentPane().add(button_4);
-        
-
-        button_5.setBounds(296, 206, 49, 76);
-        frame.getContentPane().add(button_5);
-        
-
-        button_6.setBounds(344, 206, 49, 76);
-        frame.getContentPane().add(button_6);
-        
-        button_7.setBounds(394, 206, 49, 76);
-        frame.getContentPane().add(button_7);
-        
-
-        button_8.setBounds(445, 206, 49, 76);
-        frame.getContentPane().add(button_8);
-        
-
-        button_9.setBounds(493, 206, 49, 76);
-        frame.getContentPane().add(button_9);
+        button3.setBounds(196, 206, 49, 76);
+        frame.getContentPane().add(button3);
         
  
-        button_10.setBounds(543, 206, 49, 76);
-        frame.getContentPane().add(button_10);
+        button4.setBounds(247, 206, 49, 76);
+        frame.getContentPane().add(button4);
         
 
-        button_11.setBounds(595, 206, 49, 76);
-        frame.getContentPane().add(button_11);
+        button5.setBounds(296, 206, 49, 76);
+        frame.getContentPane().add(button5);
+        
+
+        button6.setBounds(344, 206, 49, 76);
+        frame.getContentPane().add(button6);
+        
+        button7.setBounds(394, 206, 49, 76);
+        frame.getContentPane().add(button7);
+        
+
+        button8.setBounds(445, 206, 49, 76);
+        frame.getContentPane().add(button8);
+        
+
+        button9.setBounds(493, 206, 49, 76);
+        frame.getContentPane().add(button9);
+        
+ 
+        button10.setBounds(543, 206, 49, 76);
+        frame.getContentPane().add(button10);
+        
+
+        button11.setBounds(595, 206, 49, 76);
+        frame.getContentPane().add(button11);
         
         
         btnCompletion.setBounds(517, 51, 100, 23);
         frame.getContentPane().add(btnCompletion);
+
         
         
         btnPass.setBounds(517, 85, 100, 23);
@@ -140,19 +143,19 @@ public class Client
         btnMakeMove.setBounds(517, 119, 100, 23);
         frame.getContentPane().add(btnMakeMove);
         
-        JLabel label = new JLabel("New label");
+        
         Image x= new ImageIcon(this.getClass().getResource("/CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
         label.setIcon(new ImageIcon(x));
         label.setBounds(10, 30, 105, 145);
         frame.getContentPane().add(label);
         
-        JLabel label_1 = new JLabel("New label");
+        
         Image y= new ImageIcon(this.getClass().getResource("/CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
         label_1.setIcon(new ImageIcon(y));
         label_1.setBounds(146, 30, 105, 145);
         frame.getContentPane().add(label_1);
         
-        JLabel label_2 = new JLabel("New label");
+        
         Image z= new ImageIcon(this.getClass().getResource("/CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT);
         label_2.setIcon(new ImageIcon(z));
         label_2.setBounds(285, 30, 105, 145);
@@ -161,7 +164,7 @@ public class Client
         
         
     }
-    
+
     public void play() throws Exception
     {
         String response = "";
@@ -175,67 +178,67 @@ public class Client
                 
                 Image z= new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
                 btnNewButton.setIcon(new ImageIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" "))))); 
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" "))))); 
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button1.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button1.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button2.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button2.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button3.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button3.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button4.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button4.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button5.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button5.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button6.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button6.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button7.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button7.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button8.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button8.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button9.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button9.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button10.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button10.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring(response.indexOf(" ") + 1);
                 
                 z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-                button11.setIcon(new ImagaeIcon(z));
-                hand.add(new Card(response.charAt(0), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
+                button11.setIcon(new ImageIcon(z));
+                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
                 response = response.substring   (response.indexOf(" ") + 1);
 
                 
@@ -249,38 +252,38 @@ public class Client
                     response= response.substring(28);
                     if(response.length()>8)
                     {
-                        Image x= new ImageIcon(this.getClass().getResource(response.substring(0, indexOf(" "))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT)); 
+                        Image x= new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_2.setIcon(new ImageIcon(x));
-                        response = response.substring(response.substring(indexOf(" ")+1));
+                        response = response.substring(response.indexOf(" ")+1);
                         
-                        x = new ImageIcon(this.getClass().getResource(response.substring(0, indexOf(" "))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT)); 
+                        x = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_1.setIcon(new ImageIcon(x));
-                        response = response.substring(response.substring(indexOf(" ")+1));
+                        response = response.substring(response.indexOf(" ")+1);
                         
-                        x = new ImageIcon(this.getClass().getResource(response.substring(0, indexOf(" "))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT)); 
+                        x = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label.setIcon(new ImageIcon(x));
-                        response = response.substring(response.substring(indexOf(" ")+1));
+                        response = response.substring(response.indexOf(" ")+1);
                     }
                     else if(response.length()>4)
                     {
                         label.setIcon(label_2.getIcon());
                         
-                        Image x= new ImageIcon(this.getClass().getResource(response.substring(0, indexOf(" "))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT)); 
+                        Image x= new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_2.setIcon(new ImageIcon(x));
-                        response = response.substring(response.substring(indexOf(" ")+1));
+                        response = response.substring(response.indexOf(" ")+1);
                         
-                        x = new ImageIcon(this.getClass().getResource(response.substring(0, indexOf(" "))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT)); 
+                        x = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_1.setIcon(new ImageIcon(x));
-                        response = response.substring(response.substring(indexOf(" ")+1));
+                        response = response.substring(response.indexOf(" ")+1);
                     }
                     else
                     {
                         label.setIcon(label_1.getIcon());
                         label_1.setIcon(label_2.getIcon());
                         
-                        x = new ImageIcon(this.getClass().getResource(response.substring(0, indexOf(" "))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT)); 
+                        Image x = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_2.setIcon(new ImageIcon(x));
-                        response = response.substring(response.substring(indexOf(" ")+1));
+                        response = response.substring(response.indexOf(" ")+1);
                     }
                 }
 
@@ -290,37 +293,8 @@ public class Client
         {
             socket.close();
         }
-     }
-     btnMakeMove.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-			    String output = "";
-    	for(int i = 0; i < cards.size(); i++)
-    	{
-    		 output += cards.get(i).toString() + " ";
-    	}
-    	
-			    out.println("MOVE " + output);
-			}
-			
-			btnCompletion.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e){
-				    String output = "";
-    	for(int i = 0; i < cards.size(); i++)
-    	{
-    		 output += cards.get(i).toString() + " ";
-    	}
-    	
-			    out.println("COMPLETION " + output);
-			}
-			btnPass.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-			    out.println("PASS");
-			}
+    }
+     
 			public static void main(String[] args) throws Exception
 			{
 			    while(true)
@@ -329,11 +303,13 @@ public class Client
 			        if(args.length == 0)
 			         serverAddress = "localhost";
 			        else
-			         args[1];
+			         serverAddress = args[1];
 			         
 			        Client client = new Client(serverAddress);
 			        client.play();
 			    }
 			}
-		
-    }
+}
+					
+   
+			
