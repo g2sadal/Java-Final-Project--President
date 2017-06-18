@@ -1,0 +1,34 @@
+ textField = new JTextField();
+		textField.setBounds(170, 305, 223, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(170, 339, 224, 20);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblIpAddress = new JLabel("Ip Address");
+		lblIpAddress.setForeground(Color.ORANGE);
+		lblIpAddress.setBackground(Color.RED);
+		lblIpAddress.setBounds(103, 308, 68, 14);
+		frame.getContentPane().add(lblIpAddress);
+		
+		JLabel lblPortNumber = new JLabel("Port number");
+		lblPortNumber.setForeground(Color.ORANGE);
+		lblPortNumber.setBackground(Color.RED);
+		lblPortNumber.setBounds(98, 342, 68, 14);
+		frame.getContentPane().add(lblPortNumber);
+		
+		JButton btnConnect = new JButton("Connect");
+		btnConnect.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String ip = textField.getText();
+				String port= textField_1.getText();
+			}
+		});
+		btnConnect.setBounds(247, 370, 89, 23);
+		frame.getContentPane().add(btnConnect);
+		
+		
