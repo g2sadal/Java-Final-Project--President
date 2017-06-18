@@ -1,0 +1,188 @@
+
+
+import java.net.*;
+import java.io.*;
+
+
+
+
+public class Server
+
+{
+	
+
+	
+   public static void main (String[] args) throws Exception
+
+   {
+	   ServerSocket listener, listener1, listener2, listener3;
+	   Socket socket1;
+       listener = new ServerSocket(2224);
+       //listener1 = new ServerSocket(2225);
+       //listener2 = new ServerSocket(2225);
+       //listener3 = new ServerSocket(2226;)
+    		   
+       
+       
+
+       System.out.println("Server is running Amarnath");
+
+       try
+
+       {
+
+           while(true)
+
+           {
+        	   System.out.println("Server try block");
+        	   
+        	   
+
+               Game game = new Game();
+               
+               
+               //Player player1 = new Player(1);
+               Player player1 = new Player(listener.accept(), 1);
+               System.out.println("Player get ID in Player class %%%%%" + player1.getRank());
+
+               //Player player2 = new Player(2);
+
+               //Player player3 = new Player(3);
+
+               //Player player4 = new Player(4);
+
+               //game.deal(player1, player2, player3, player4);
+               
+               System.out.println("Set socket");
+               //socket1 = listener.accept();
+               System.out.println("listener set");             
+               //player1.setSocket(socket1);
+               //player2.setSocket(listener.accept());
+               //player3.setSocket(listener.accept());
+               //player4.setSocket(listener.accept());
+               
+               player1.start();
+
+               //player2.start();
+
+               //player3.start();
+
+               //player4.start();
+
+              /*
+
+                   if(player1.returnMove())
+
+                   {
+
+                        game.makeMove(player1.getPlay());
+
+                   }
+
+                   if(player2.returnMove())
+
+                   {
+
+                        game.makeMove(player2.getPlay());
+
+                   }
+
+                   if(player3.returnMove())
+
+                   {
+
+                        game.makeMove(player3.getPlay());
+
+                   }
+
+                   if(player4.returnMove())
+
+                   {
+
+                        game.makeMove(player4.getPlay());
+
+                   }
+
+                   
+
+                   if(player1.returnComplete())
+
+                   {
+
+                        game.canComplete(player1.getPlay());
+
+                   }
+
+                   if(player2.returnComplete())
+
+                   {
+
+                        game.canComplete(player2.getPlay());
+
+                   }
+
+                   if(player3.returnComplete())
+
+                   {
+
+                        game.canComplete(player3.getPlay());
+
+                   }
+
+                   if(player4.returnComplete())
+
+                   {
+
+                        game.canComplete(player4.getPlay());
+
+                   }
+
+                   
+
+                   if(player1.returnPass())
+
+                   {
+
+                        game.pass();
+
+                   }
+
+                   if(player2.returnPass())
+
+                   {
+
+                        game.pass();
+
+                   }
+
+                   if(player3.returnPass())
+
+                   {
+
+                        game.pass();
+
+                   }
+
+                   if(player4.returnPass())
+
+                   {
+
+                        game.pass();
+
+                   }
+*/
+               }
+
+           
+
+       }
+
+       finally
+
+       { listener.close();}
+
+   
+   
+   }
+
+}
