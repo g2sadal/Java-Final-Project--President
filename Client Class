@@ -88,7 +88,7 @@ public class Client1
 				else if(serverResponse.startsWith("OTHER"))
 				{
 					serverResponse = serverResponse.substring(6);
-					if(serverResponse.length()==0)
+					if(serverResponse.length()>2)
 					{
 						Image x= new ImageIcon(this.getClass().getResource("CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT);
 						label.setIcon(new ImageIcon(x));
@@ -139,7 +139,7 @@ public class Client1
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         
-        Image a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        Image a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         btnNewButton.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         btnNewButton.setBounds(6, 206, 46, 76);        
@@ -156,7 +156,7 @@ public class Client1
         
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button.setBounds(52, 206, 49, 76);
@@ -173,7 +173,7 @@ public class Client1
         
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button1.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button1.setBounds(98, 206, 49, 76);
@@ -190,7 +190,7 @@ public class Client1
 
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button2.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button2.setBounds(146, 206, 49, 76);
@@ -207,7 +207,7 @@ public class Client1
         
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button3.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button3.setBounds(196, 206, 49, 76);
@@ -224,7 +224,7 @@ public class Client1
         
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button4.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button4.setBounds(247, 206, 49, 76);
@@ -241,7 +241,7 @@ public class Client1
         
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button5.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button5.setBounds(296, 206, 49, 76);
@@ -258,7 +258,7 @@ public class Client1
         
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button6.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button6.setBounds(344, 206, 49, 76);
@@ -273,7 +273,7 @@ public class Client1
 			}
 		});
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button7.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button7.setBounds(394, 206, 49, 76);
@@ -289,7 +289,7 @@ public class Client1
 		});
         
 
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button8.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button8.setBounds(445, 206, 49, 76);
@@ -307,7 +307,7 @@ public class Client1
         
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button9.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button9.setBounds(493, 206, 49, 76);
@@ -324,7 +324,7 @@ public class Client1
         
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button10.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button10.setBounds(543, 206, 49, 76);
@@ -341,7 +341,7 @@ public class Client1
         
 
         
-        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(40, 70, Image.SCALE_SMOOTH);
         button11.setIcon(new ImageIcon(a));
         response = response.substring(response.indexOf(" ") + 1);
         button11.setBounds(595, 206, 49, 76);
