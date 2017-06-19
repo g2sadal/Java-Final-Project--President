@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 
 
+
 public class Game 
 
 {
@@ -22,7 +23,9 @@ public class Game
 
     private List<Card> pile;
 
-    private Player player1, player2, player3, player4;
+    private Player1 player1, player2, player3, player4;
+    
+    private int amtPerRound = 1;
 
 
 
@@ -32,10 +35,11 @@ public class Game
 
      */
 
-    public Game() throws IOException
+    public Game(Player1 p1, Player1 p2, Player1 p3, Player1 p4) throws IOException
 
     {
-
+    	System.out.println("game created");
+    	
         firstGame = true;
 
         deck = new ArrayList<Card>(); 
@@ -232,15 +236,15 @@ public class Game
 
  	   deck.add(ClubsJack);
 
- 	   Card DiamondsJack = new Card("", 11);
+ 	   Card DiamondsJack = new Card("D", 11);
 
  	   deck.add(DiamondsJack);
 
- 	   Card SpadesJack = new Card("Spades", 11);
+ 	   Card SpadesJack = new Card("S", 11);
 
  	   deck.add(SpadesJack);
 
- 	   Card HeartsJack = new Card("Hearts", 11);
+ 	   Card HeartsJack = new Card("H", 11);
 
  	   deck.add(HeartsJack);
 
@@ -279,23 +283,19 @@ public class Game
  	   Card HeartsQueen = new Card("H", 12);  
 
  	   deck.add(HeartsQueen);
-
  	   
+ 	   player1 = p1;
+ 	   player2 = p2;
+ 	   player3 = p3;
+ 	   player4 = p4;
+ 			   
+ 	   shuffle();
+ 	   
+ 	   deal(player1, player2, player3, player4);
 
     }
 
     
-
-    
-
-    public ArrayList<Card> getDeck()
-
-    {
-
-    	return deck;
-
-    }
-
     
 
     public void shuffle()
@@ -322,7 +322,7 @@ public class Game
 
     
 
-    public void deal(Player p1, Player p2, Player p3, Player p4)
+    public void deal(Player1 p1, Player1 p2, Player1 p3, Player1 p4)
 
     {
 
@@ -343,186 +343,12 @@ public class Game
 
     }
 
-    
-
-	
-
-	public boolean canComplete(List<Card> hand)
-
-	{
-
-		int countPile = 0;
-
-		
-
-		int countPlayerHand = 0;
-
-		
-
-		int total = 0;
-
-		
-
-		Card currentCard = pile.get(pile.size()-1);
-
-		for(int i = pile.size()-1; i > pile.size() - 4; i--)
-
-		{
-
-			if(currentCard == pile.get(i-1))
-
-			{
-
-				countPile += 1;
-
-			}
-
-		}
-
-		if (countPile!= 0) 
-
-		{
-
-			for( int i = 0; i < hand.size(); i++)
-
-			{
-
-				if(hand.get(i).equals(currentCard))
-
-				{
-
-					countPlayerHand +=1;
-
-				}
-
-			}
-
-			total = countPlayerHand + countPile;
-
-			
-
-			if(total != 4)
-
-			{
-
-				return false;
-
-			}
-
-			else
-
-			{
-
-			    pile.clear();
-
-			}
-
-			
-
-			return true;
-
-		}
-
-		return false;
-
-	}
-
+   
 	
 
 	
 
-    public void makeMove(List<Card> move)
-
-    {
-
-        if(move.get(0).compareTo(pile.get(2))>=0)
-
-        {
-
-            for(Card card: move)
-
-            {
-
-                pile.add(card);
-
-            }
-
-        
-
-            if(move.get(move.size()-1).getValue()==15)
-
-                pile.clear();
-
-            
-
-            while(pile.size()>3)
-
-            {
-
-                    pile.remove(0);
-
-            }
-
-            
-
-            if (currentPlayer == 1)
-
-            {
-
-                player2.otherPlayerMoved(currentPlayer, move);
-
-                player3.otherPlayerMoved(currentPlayer, move);
-
-                player4.otherPlayerMoved(currentPlayer, move);
-
-            }
-
-            else if (currentPlayer == 2)
-
-            {
-
-                player1.otherPlayerMoved(currentPlayer, move);
-
-                player3.otherPlayerMoved(currentPlayer, move);
-
-                player4.otherPlayerMoved(currentPlayer, move);
-
-            }
-
-            else if (currentPlayer == 3)
-
-            {
-
-                player2.otherPlayerMoved(currentPlayer, move);
-
-                player1.otherPlayerMoved(currentPlayer, move);
-
-                player4.otherPlayerMoved(currentPlayer, move);
-
-            }
-
-            else if (currentPlayer == 4)
-
-            {
-
-                player2.otherPlayerMoved(currentPlayer, move);
-
-                player3.otherPlayerMoved(currentPlayer, move);
-
-                player1.otherPlayerMoved(currentPlayer, move);
-
-            }
-
-            currentPlayer++;
-
-        }
-
-
-
-    }
-
-    
-
+   
     public void skip()
 
     {
@@ -567,7 +393,7 @@ public class Game
 
     
 
-    public void print()
+    public void print()//used when testing deck and shuffle
 
     {
 
@@ -596,6 +422,47 @@ public class Game
     	currentPlayer = currentPlayerLoop();
 
     }
+    
+    public String makeMove(List<Card> move, int r)
+    {
+    	if(r == currentPlayer)
+    	{
+    		for(Card c: move)
+    		{
+    			pile.add(c);
+    		}
+    		
+    		while(pile.size()>3)
+    		{
+    			pile.remove(0);
+    		}
+    		
+    		if(pile.get(2).compareTo(pile.get(1))==0)
+    			skip();
+    		
+    		return moveToString(pile);
+    	}
+    	return "";
+    }
+    
+    public void complete(List<Card> move, int r)
+    {  		
+    		pile.clear();
+    }
+    private String moveToString(List<Card> move)
+
+    {
+        String output = "";
+        
+        for(int i=0; i<move.size(); i++)
+        {
+            output+= move.get(i).toString() + " ";
+        }
+
+        return output;
+    }
+    
+    
 
     
 
