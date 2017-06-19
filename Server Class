@@ -1,163 +1,161 @@
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 
 import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.List;
+import java.util.ArrayList;
 
-
-
-
-
-public class Server
-
+public class server1 
 {
-
-   public static void main (String[] args) throws Exception
-
-   {
-
-       ServerSocket listener = new ServerSocket(2222);
-
-       System.out.println("Server is running");
-
-       try
-
-       {
-
-           while(true)
-
-           {
-
-               Game game = new Game();
-
-               Player player1 = new Player(listener.accept(), 1);
-
-               Player player2 = new Player(listener.accept(), 2);
-
-               Player player3 = new Player(listener.accept(), 3);
-
-               Player player4 = new Player(listener.accept(), 4);
-
-               game.deal(player1, player2, player3, player4);
-
-               player1.start();
-
-               player2.start();
-
-               player3.start();
-
-               player4.start();
-
-              
-
-                   if(player1.returnMove())
-
-                   {
-
-                        game.makeMove(player1.getPlay());
-
-                   }
-
-                   if(player2.returnMove())
-
-                   {
-
-                        game.makeMove(player2.getPlay());
-
-                   }
-
-                   if(player3.returnMove())
-
-                   {
-
-                        game.makeMove(player3.getPlay());
-
-                   }
-
-                   if(player4.returnMove())
-
-                   {
-
-                        game.makeMove(player4.getPlay());
-
-                   }
-
-                   
-
-                   if(player1.returnComplete())
-
-                   {
-
-                        game.canComplete(player1.getPlay());
-
-                   }
-
-                   if(player2.returnComplete())
-
-                   {
-
-                        game.canComplete(player2.getPlay());
-
-                   }
-
-                   if(player3.returnComplete())
-
-                   {
-
-                        game.canComplete(player3.getPlay());
-
-                   }
-
-                   if(player4.returnComplete())
-
-                   {
-
-                        game.canComplete(player4.getPlay());
-
-                   }
-
-                   
-
-                   if(player1.returnPass())
-
-                   {
-
-                        game.pass();
-
-                   }
-
-                   if(player2.returnPass())
-
-                   {
-
-                        game.pass();
-
-                   }
-
-                   if(player3.returnPass())
-
-                   {
-
-                        game.pass();
-
-                   }
-
-                   if(player4.returnPass())
-
-                   {
-
-                        game.pass();
-
-                   }
-
-               }
-
-           
-
-       }
-
-       finally
-
-       { listener.close();}
-
-   }
-
+	private ServerSocket serverSocket1, serverSocket2, serverSocket3, serverSocket4;
+	private boolean serverOn = true;
+	public server1() throws IOException
+	{
+		try
+		{
+			serverSocket1 = new ServerSocket(5555);
+			serverSocket2 = new ServerSocket(5556);
+			serverSocket3 = new ServerSocket(5557);
+			serverSocket4 = new ServerSocket(5558);
+		}
+		catch(IOException ioe)
+		{
+			System.out.println("Couldn't create socket");
+		}
+		
+		Player1 player1 = new Player1(1);
+		Player1 player2 = new Player1(2);
+		Player1 player3 = new Player1(3);
+		Player1 player4 = new Player1(4);
+		
+		
+			Game game = new Game(player1, player2, player3, player4);
+		
+		
+		
+		while(serverOn)
+		{
+			try
+			{
+				Socket clientSocket1 = serverSocket1.accept();
+				System.out.println("Connected to client 1");
+				player1.setSocket(clientSocket1);
+				player1.start();
+				
+				Socket clientSocket2 = serverSocket2.accept();
+				System.out.println("Connected to client 2");
+				player2.setSocket(clientSocket2);
+				player2.start();
+				
+				Socket clientSocket3 = serverSocket3.accept();
+				System.out.println("Connected to client 3");
+				player3.setSocket(clientSocket3);
+				player3.start();
+				
+				Socket clientSocket4 = serverSocket4.accept();
+				System.out.println("Connected to client 4");
+				player4.setSocket(clientSocket4);
+				player4.start();
+				
+				if(player1.getMove())
+				{
+					List<Card> move = player1.getPlay();
+					String updateMove = game.makeMove(move, player1.getRank());
+					player2.opponentMoved(updateMove);
+					player3.opponentMoved(updateMove);
+					player4.opponentMoved(updateMove);
+				}
+				else if(player2.getMove())
+				{
+					List<Card> move = player2.getPlay();
+					String updateMove = game.makeMove(move, player2.getRank());
+					player1.opponentMoved(updateMove);
+					player3.opponentMoved(updateMove);
+					player4.opponentMoved(updateMove);
+					
+				}
+				else if(player3.getMove())
+				{
+					List<Card> move = player3.getPlay();
+					String updateMove = game.makeMove(move, player3.getRank());
+					player2.opponentMoved(updateMove);
+					player1.opponentMoved(updateMove);
+					player4.opponentMoved(updateMove);
+					
+				}
+				else if(player4.getMove())
+				{
+					List<Card> move = player4.getPlay();
+					String updateMove = game.makeMove(move, player4.getRank());
+					player2.opponentMoved(updateMove);
+					player3.opponentMoved(updateMove);
+					player1.opponentMoved(updateMove);
+					
+				}
+				
+				if(player1.getComplete())
+				{
+					List<Card> move = player1.getPlay();
+					game.complete(move, player1.getRank());
+					
+				}
+				else if(player2.getComplete())
+				{
+					List<Card> move = player2.getPlay();
+					game.complete(move, player2.getRank());
+					
+				}
+				else if(player3.getComplete())
+				{
+					List<Card> move = player3.getPlay();
+					game.complete(move, player3.getRank());
+					
+				}
+				else if(player4.getComplete())
+				{
+					List<Card> move = player4.getPlay();
+					game.complete(move, player4.getRank());
+					
+				}
+				if(player1.getPass()||player2.getPass()||player3.getPass()||player4.getPass())
+				{
+					game.pass();					
+				}			
+				
+				
+			}
+			catch(IOException ioe)
+			{
+				System.out.println("Exception found");
+			}
+		}
+		try
+		{
+			serverSocket1.close();
+			System.out.println("Server socket closed");
+		}
+		catch(Exception ioe)
+		{
+			System.out.println("Error found");
+		}
+	}
+	public static void main(String[] args)
+	{
+		try {
+			new server1();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean getServerOn()
+	{
+		return serverOn;
+	}
+	
+	
 }
