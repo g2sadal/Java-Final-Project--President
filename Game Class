@@ -427,18 +427,24 @@ public class Game
     {
     	if(r == currentPlayer)
     	{
-    		for(Card c: move)
+    		if(move.get(0).getValue()==15)
+    			pile.clear();
+    		else
     		{
-    			pile.add(c);
+    			for(Card c: move)
+        		{
+        			pile.add(c);
+        		}
+        		
+        		while(pile.size()>3)
+        		{
+        			pile.remove(0);
+        		}
+        		
+        		if(pile.get(2).compareTo(pile.get(1))==0)
+        			skip();
     		}
     		
-    		while(pile.size()>3)
-    		{
-    			pile.remove(0);
-    		}
-    		
-    		if(pile.get(2).compareTo(pile.get(1))==0)
-    			skip();
     		
     		return moveToString(pile);
     	}
