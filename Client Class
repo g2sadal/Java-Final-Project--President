@@ -1,132 +1,149 @@
-import java.awt.event.MouseAdapter;
-
-import java.awt.event.MouseEvent;
-
-import java.io.BufferedReader;
-
-import java.io.InputStreamReader;
-
-import java.io.PrintWriter;
-
-import java.net.Socket;
-
-
-
-import javax.swing.ImageIcon;
-
-import javax.swing.JButton;
+import java.net.*;
 
 import java.util.List;
+import java.util.ArrayList;
 
-
-
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-
-
-
-
-
-
-import java.awt.Image;
-
-
-
-
-
 import javax.swing.JLabel;
 
-
 import java.awt.Color;
-
-
-
-
-
-public class Client
-
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.*;
+public class Client1
 {
+	private int port; 
+	private List<Card> play = new ArrayList<Card>();
+	private List<Card> hand = new ArrayList<Card>();
+	private List<Card> pile = new ArrayList<Card>();
+	    private JFrame frame;
 
-    private static int PORT = 2222;
+	    private JButton btnNewButton = new  JButton("New button");   
 
-    private Socket socket;
+	    private JButton button = new JButton("New button");  
 
-    private BufferedReader in;
+	    private JButton button1 = new JButton("New button");
 
-    private PrintWriter out;
-    
+	    private JButton button2 = new JButton("New button");
 
-    private List<Card> play;
+	    private JButton button3 = new JButton("New button");
 
-    private List<Card> hand;
-    private JFrame frame;
+	    private JButton button4 = new JButton("New button");
 
-    private JButton btnNewButton = new  JButton("New button");   
+	    private JButton button5 = new JButton("New button");
 
-    private JButton button = new JButton("New button");  
+	    private JButton button6 = new JButton("New button");
 
-    private JButton button1 = new JButton("New button");
+	    private JButton button7 = new JButton("New button");
 
-    private JButton button2 = new JButton("New button");
+	    private JButton button8 = new JButton("New button");
 
-    private JButton button3 = new JButton("New button");
+	    private JButton button9 = new JButton("New button");
 
-    private JButton button4 = new JButton("New button");
+	    private JButton button10 = new JButton("New button");
 
-    private JButton button5 = new JButton("New button");
+	    private JButton button11 = new JButton("New button");
 
-    private JButton button6 = new JButton("New button");
+	    private JButton btnCompletion = new JButton("Completion");
 
-    private JButton button7 = new JButton("New button");
+	    private JButton btnPass = new JButton("Pass");
 
-    private JButton button8 = new JButton("New button");
+	    private JButton btnMakeMove = new JButton("Make Move");
 
-    private JButton button9 = new JButton("New button");
+	    private JLabel label = new JLabel("New label");
 
-    private JButton button10 = new JButton("New button");
+	    private JLabel label_1 = new JLabel("New label");
 
-    private JButton button11 = new JButton("New button");
-
-    private JButton btnCompletion = new JButton("Completion");
-
-    private JButton btnPass = new JButton("Pass");
-
-    private JButton btnMakeMove = new JButton("Make Move");
-
-    private JLabel label = new JLabel("New label");
-
-    private JLabel label_1 = new JLabel("New label");
-
-    private JLabel label_2 = new JLabel("New label");
-
-    
-
-    
-
-    public Client(String serverAddress) throws Exception
-
-    {
-
-        socket = new Socket(serverAddress, PORT);
-
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-        out = new PrintWriter(socket.getOutputStream(), true);
-
-        
-
-        frame = new JFrame();
-
+	    private JLabel label_2 = new JLabel("New label");
+	    
+	    private PrintStream out;
+	    private BufferedReader in;
+	    private boolean clientOn = true;
+	    
+	public Client1(int r)
+	{
+		port = r;
+		try
+		{
+			System.out.println("Connecting to  on port " + port);
+			Socket client = new Socket(InetAddress.getLocalHost().getHostName(), port);
+			System.out.println("Just connected to " + client.getRemoteSocketAddress());
+			
+			out = new PrintStream(client.getOutputStream());
+			out.println("Hello from " + client.getLocalSocketAddress());
+			
+			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			while(clientOn)
+			{
+				String serverResponse = in.readLine();
+				if(serverResponse.startsWith("HAND"))
+				{
+					System.out.println(serverResponse);
+					serverResponse = serverResponse.substring(5);
+					display(serverResponse);
+				}
+				else if(serverResponse.startsWith("OTHER"))
+				{
+					serverResponse = serverResponse.substring(6);
+					if(serverResponse.length()==0)
+					{
+						Image x= new ImageIcon(this.getClass().getResource("CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT);
+						label.setIcon(new ImageIcon(x));
+						label_1.setIcon(new ImageIcon(x));
+						label_2.setIcon(new ImageIcon(x));
+					}
+					else
+					{
+						Image x= new ImageIcon(this.getClass().getResource(serverResponse.substring(0, serverResponse.indexOf(" ")) + ".png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT);
+	                    label_2.setIcon(new ImageIcon(x));
+	                    serverResponse = serverResponse.substring(serverResponse.indexOf(" ")+1);
+	                   
+	                    x = new ImageIcon(this.getClass().getResource(serverResponse.substring(0, serverResponse.indexOf(" ")) + ".png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT);
+	                    label_1.setIcon(new ImageIcon(x));
+	                    serverResponse = serverResponse.substring(serverResponse.indexOf(" ")+1);
+	                 
+	                    x = new ImageIcon(this.getClass().getResource(serverResponse.substring(0, serverResponse.indexOf(" ")) + ".png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
+	                    label.setIcon(new ImageIcon(x));
+					}				                   
+				}
+			}
+			
+			
+			
+			
+			client.close();
+			
+		}
+		catch(IOException  e)
+		{
+			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args)
+	{
+		
+		Client1 client = new Client1(Integer.parseInt(args[0]));
+		
+		
+		
+	}
+	
+	private void display(String response)
+	{
+		frame = new JFrame();
         frame.getContentPane().setBackground(new Color(0, 100, 0));
-
         frame.setBounds(100, 100, 667, 455);
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         frame.getContentPane().setLayout(null);
-
         
-
-
+        Image a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        btnNewButton.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        btnNewButton.setBounds(6, 206, 46, 76);        
+        frame.getContentPane().add(btnNewButton);
         btnNewButton.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -136,13 +153,14 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        btnNewButton.setBounds(6, 206, 46, 76);
-
-        frame.getContentPane().add(btnNewButton);
-
         
 
-
+        
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button.setBounds(52, 206, 49, 76);
+        frame.getContentPane().add(button);
         button.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -152,13 +170,14 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button.setBounds(52, 206, 49, 76);
-
-        frame.getContentPane().add(button);
-
         
 
         
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button1.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button1.setBounds(98, 206, 49, 76);
+        frame.getContentPane().add(button1);      
         button1.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -168,13 +187,14 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button1.setBounds(98, 206, 49, 76);
 
-        frame.getContentPane().add(button1);
 
         
-
-        
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button2.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button2.setBounds(146, 206, 49, 76);
+        frame.getContentPane().add(button2);
         button2.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -184,13 +204,14 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button2.setBounds(146, 206, 49, 76);
-
-        frame.getContentPane().add(button2);
-
         
 
         
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button3.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button3.setBounds(196, 206, 49, 76);
+        frame.getContentPane().add(button3);
         button3.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -200,29 +221,31 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button3.setBounds(196, 206, 49, 76);
-
-        frame.getContentPane().add(button3);
-
         
 
- 
+        
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button4.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button4.setBounds(247, 206, 49, 76);
+        frame.getContentPane().add(button4);
         button4.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-			String name= ((ImageIcon) button4.getIcon()).getDescription();
+			String name= ((ImageIcon)button4.getIcon()).getDescription();
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button4.setBounds(247, 206, 49, 76);
-
-        frame.getContentPane().add(button4);
-
         
 
-
+        
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button5.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button5.setBounds(296, 206, 49, 76);
+        frame.getContentPane().add(button5);
         button5.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -232,13 +255,14 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button5.setBounds(296, 206, 49, 76);
-
-        frame.getContentPane().add(button5);
-
         
 
-
+        
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button6.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button6.setBounds(344, 206, 49, 76);
+        frame.getContentPane().add(button6);
         button6.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -248,11 +272,12 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button6.setBounds(344, 206, 49, 76);
-
-        frame.getContentPane().add(button6);
-
         
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button7.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button7.setBounds(394, 206, 49, 76);
+        frame.getContentPane().add(button7);
         button7.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -262,12 +287,13 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button7.setBounds(394, 206, 49, 76);
-
-        frame.getContentPane().add(button7);
-
         
 
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button8.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button8.setBounds(445, 206, 49, 76);
+        frame.getContentPane().add(button8);
         button8.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -278,13 +304,14 @@ public class Client
 			}
 		});
 
-        button8.setBounds(445, 206, 49, 76);
-
-        frame.getContentPane().add(button8);
-
         
 
-
+        
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button9.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button9.setBounds(493, 206, 49, 76);
+        frame.getContentPane().add(button9);
         button9.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -294,13 +321,14 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button9.setBounds(493, 206, 49, 76);
-
-        frame.getContentPane().add(button9);
-
         
 
- 
+        
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button10.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button10.setBounds(543, 206, 49, 76);
+        frame.getContentPane().add(button10);
         button10.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -310,13 +338,14 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button10.setBounds(543, 206, 49, 76);
-
-        frame.getContentPane().add(button10);
-
         
 
-
+        
+        a =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" "))+".png")).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
+        button11.setIcon(new ImageIcon(a));
+        response = response.substring(response.indexOf(" ") + 1);
+        button11.setBounds(595, 206, 49, 76);
+        frame.getContentPane().add(button11);
         button11.addMouseListener(new MouseAdapter() 
         { // button click
 			@Override
@@ -326,35 +355,54 @@ public class Client
 			play.add(new Card(name.substring(0, 1), Integer.parseInt(name.substring(1))));
 			}
 		});
-        button11.setBounds(595, 206, 49, 76);
-
-        frame.getContentPane().add(button11);
-
         
 
         
+
+        btnCompletion.setBounds(517, 51, 100, 23);
+        frame.getContentPane().add(btnCompletion);
         btnCompletion.addMouseListener(new MouseAdapter() 
         {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				String output = "";
-				for(int i=0; i<play.size(); i++)
+				boolean sameCard = true;
+				for(Card c: play)
 				{
-					output+= play.get(i).toString() + " ";
+					if(c.compareTo(play.get(0))!=0)
+						sameCard = false;
 				}
-				out.println("COMPLETION" + output);
+				
+				for(int i=2; i>2-(4-play.size()); i--)
+				{
+					if(play.get(0).compareTo(pile.get(i))!=0)
+						sameCard = false;
+				}
+				
+				if(sameCard && play.get(0).compareTo(pile.get(2))==0)
+				{
+					String output = "";
+					for(int i=0; i<play.size(); i++)
+					{
+						output+= play.get(i).toString() + " ";
+					}
+					out.println("COMPLETION " + output);
+					
+					Image x= new ImageIcon(this.getClass().getResource("CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT);
+					label.setIcon(new ImageIcon(x));
+					label_1.setIcon(new ImageIcon(x));
+					label_2.setIcon(new ImageIcon(x));
+				}						
 			}
 		});
-        btnCompletion.setBounds(517, 51, 100, 23);
-
-        frame.getContentPane().add(btnCompletion);
+        
 
 
 
         
 
-        
+        btnPass.setBounds(517, 85, 100, 23);
+        frame.getContentPane().add(btnPass);
         btnPass.addMouseListener(new MouseAdapter() 
         {
 			@Override
@@ -363,369 +411,91 @@ public class Client
 				out.println("PASS");
 			}
 		});
-        btnPass.setBounds(517, 85, 100, 23);
-
-        frame.getContentPane().add(btnPass);
-
         
 
         
+
+        btnMakeMove.setBounds(517, 119, 100, 23);
+        frame.getContentPane().add(btnMakeMove);
         btnMakeMove.addMouseListener(new MouseAdapter() 
         {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				String output = "";
-				for(int i=0; i<play.size(); i++)
+				boolean sameCard = true;
+				for(Card c: play)
 				{
-					output+= play.get(i).toString() + " ";
+					if(c.compareTo(play.get(0))!=0)
+						sameCard = false;
 				}
-				out.println("MOVE" + output);
-			}
-		});
-        btnMakeMove.setBounds(517, 119, 100, 23);
-
-        frame.getContentPane().add(btnMakeMove);
-
-        
-
-        
-
-        Image x= new ImageIcon(this.getClass().getResource("/CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
-
-        label.setIcon(new ImageIcon(x));
-
-        label.setBounds(10, 30, 105, 145);
-
-        frame.getContentPane().add(label);
-
-        
-
-        
-
-        Image y= new ImageIcon(this.getClass().getResource("/CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
-
-        label_1.setIcon(new ImageIcon(y));
-
-        label_1.setBounds(146, 30, 105, 145);
-
-        frame.getContentPane().add(label_1);
-
-        
-
-        
-
-        Image z= new ImageIcon(this.getClass().getResource("/CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT);
-
-        label_2.setIcon(new ImageIcon(z));
-
-        label_2.setBounds(285, 30, 105, 145);
-
-        frame.getContentPane().add(label_2);
-
-
-
-        
-
-        
-
-    }
-
-
-
-    public void play() throws Exception
-
-    {
-
-        String response = "";
-
-        try
-
-        {
-
-            response = in.readLine();
-
-            if(response.startsWith("WELCOME"))
-
-            {
-
-
-
-                response = response.substring(33);
-
-                
-
-                Image z= new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                btnNewButton.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" "))))); 
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z =  new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button1.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button2.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button3.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button4.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button5.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button6.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button7.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button8.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button9.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button10.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring(response.indexOf(" ") + 1);
-
-                
-
-                z = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(6, 206, Image.SCALE_DEFAULT);
-
-                button11.setIcon(new ImageIcon(z));
-
-                hand.add(new Card(response.substring(0, 1), Integer.parseInt(response.substring(1, response.indexOf(" ")))));
-
-                response = response.substring   (response.indexOf(" ") + 1);
-
-
-
-                
-
-            
-
-            }
-
-            while (true)
-
-            {
-
-                response = in.readLine();
-
-                if(response.startsWith("VALID_MOVE"))
-
-                {
-
-                    response= response.substring(28);
-
-                    if(response.length()>8)
-
+				
+				if(sameCard && play.get(0).compareTo(pile.get(2))>=0)
+				{
+					String output = "";
+					for(int i=0; i<play.size(); i++)
+					{
+						output+= play.get(i).toString() + " ";
+					}
+					out.println("MOVE " + output);
+					if(output.length()>8)
                     {
 
-                        Image x= new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
-
+                        Image x= new ImageIcon(this.getClass().getResource(output.substring(0, output.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_2.setIcon(new ImageIcon(x));
-
-                        response = response.substring(response.indexOf(" ")+1);
-
-                        
-
-                        x = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
-
+                        output = output.substring(output.indexOf(" ")+1);
+                       
+                        x = new ImageIcon(this.getClass().getResource(output.substring(0, output.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_1.setIcon(new ImageIcon(x));
-
-                        response = response.substring(response.indexOf(" ")+1);
-
-                        
-
-                        x = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
-
+                        output = output.substring(output.indexOf(" ")+1);
+                      
+                        x = new ImageIcon(this.getClass().getResource(output.substring(0, output.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label.setIcon(new ImageIcon(x));
-
-                        response = response.substring(response.indexOf(" ")+1);
+                        output = output.substring(output.indexOf(" ")+1);
 
                     }
-
-                    else if(response.length()>4)
-
+                    else if(output.length()>4)
                     {
 
-                        label.setIcon(label_2.getIcon());
+                        label.setIcon(label_2.getIcon());                        
 
-                        
-
-                        Image x= new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
-
+                        Image x= new ImageIcon(this.getClass().getResource(output.substring(0, output.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_2.setIcon(new ImageIcon(x));
-
-                        response = response.substring(response.indexOf(" ")+1);
-
-                        
-
-                        x = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
-
+                        output = output.substring(output.indexOf(" ")+1);
+                       
+                        x = new ImageIcon(this.getClass().getResource(output.substring(0, output.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_1.setIcon(new ImageIcon(x));
-
-                        response = response.substring(response.indexOf(" ")+1);
-
+                        output = output.substring(output.indexOf(" ")+1);
+                        
                     }
-
                     else
-
                     {
 
                         label.setIcon(label_1.getIcon());
 
                         label_1.setIcon(label_2.getIcon());
-
-                        
-
-                        Image x = new ImageIcon(this.getClass().getResource(response.substring(0, response.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
-
+                       
+                        Image x = new ImageIcon(this.getClass().getResource(output.substring(0, output.indexOf(" ")))).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
                         label_2.setIcon(new ImageIcon(x));
-
-                        response = response.substring(response.indexOf(" ")+1);
-
+                        output = output.substring(output.indexOf(" ")+1);
                     }
-
-                }
-
-
-
-            }
-
-        }
-
-        finally
-
-        {
-
-            socket.close();
-
-        }
-
-    }
-
-     
-
-			public static void main(String[] args) throws Exception
-
-			{
-
-			    while(true)
-
-			    {
-
-			        String serverAddress =" ";
-
-			        if(args.length == 0)
-
-			         serverAddress = "localhost";
-
-			        else
-
-			         serverAddress = args[1];
-
-			         
-
-			        Client client = new Client(serverAddress);
-			        client.frame.setVisible(true);
-
-			        client.play();
-
-			    }
-
+				}
 			}
+		});
+            
+        Image x= new ImageIcon(this.getClass().getResource("CardBack.png")).getImage().getScaledInstance(105, 145, Image.SCALE_DEFAULT); 
 
+        label.setIcon(new ImageIcon(x));
+        label.setBounds(10, 30, 105, 145);
+        frame.getContentPane().add(label);
+ 
+        label_1.setIcon(new ImageIcon(x));
+        label_1.setBounds(146, 30, 105, 145);
+        frame.getContentPane().add(label_1);
+      
+        label_2.setIcon(new ImageIcon(x));
+        label_2.setBounds(285, 30, 105, 145);
+        frame.getContentPane().add(label_2);
+        
+        frame.setVisible(true);
+	}
 }
-
-					
-
-   
-
-			
