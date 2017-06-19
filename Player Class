@@ -1,285 +1,159 @@
 import java.io.BufferedReader;
-
 import java.io.IOException;
-
 import java.io.InputStreamReader;
-
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-
 import java.net.Socket;
-
+import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
-
-
-
-public class Player extends Thread
-
-{
-
-    private List<Card> hand;
-
-    private int rank;
-
-    private String suit;
-
-    private List<Card> play = new ArrayList<Card>();
-
-    private boolean madeMove = false, madeComplete = false, madePass = false;
-
-    private Socket socket;
-
-    private BufferedReader input;
-
-    private PrintWriter output;
-
-    
-
-    
-
-    public Player (Socket s, int r)
-
-    {
-
-        rank = r;
-
-        socket = s;
-
-        try
-
-        {
-
-            input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-            output.println("Welcome Player " + rank + ". Your cards are " + moveToString(hand));
-
-            output.println("Waiting for other players");
-
-        }
-
-        catch(IOException e)
-
-        {
-
-            System.out.println("No players");
-
-        }
-
-    }
-
-    
-
-    public void addHand(Card c)
-
-    {
-
-        hand.add(c);
-
-    }
-
-    
-
-    public boolean finishedHand()
-
-    {
-
-        return (hand.size() == 0);
-
-    }
-
-    
-
-    public String moveToString(List<Card> move)
-
-    {
-
-        String output = "";
-
-        for(int i=0; i<move.size(); i++)
-
-        {
-
-            output+= move.get(i).toString() + " ";
-
-        }
-
-        return output;
-
-    }
-
-    
-
-    public int getRank()
-
-    { return rank;}
-
-    
-
-    public void run()
-
-    {
-
-        try
-
-        {
-
-            output.println("All players connected");
-
-            
-
-            if(rank == 1)
-
-                //enable player's buttons
-
-            
-
-            while(true)
-
-            {
-
-                String command = input.readLine();
-
-                madeMove = false;
-
-                madeComplete = false;
-
-                madePass = false;
-
-                for(int i=0; i<command.length(); i+=2)
-
-                {
-
-                    suit = command.substring(i, i+1);
-
-                    rank = Integer.parseInt(command.substring(i+1, i+2));
-
-                    play.add(new Card(suit, rank));
-
-                }
-
-                if(command.startsWith("MOVE"))
-
-                {
-
-                    command = command.substring(6);
-
-                    madeMove = true;
-
-                    output.println("VALID_MOVE: Player " + rank + " played " + moveToString(play));
-
-        
-
-                    if(finishedHand()/*checks if player finished their hand*/)
-
-                        output.println("Player " + rank + "is done");
-
-                }
-
-                else if(command.startsWith("COMPLETION"))
-
-                {
-
-                    madeComplete = true;
-
-                    output.println("VALID_COMPLETE: Player " + rank + "completed");
-
-                }
-
-                else if(command.startsWith("PASS"))
-
-                {
-
-                    madePass = true;
-
-                    output.println("PASS: Player " + rank + "passed");
-
-                }
-
-                
-
-            }
-
-        }
-
-        catch(IOException e)
-
-        {
-
-            System.out.println("Game Over");
-
-        }
-
-        finally
-
-        {
-
-            try
-
-            {
-
-                socket.close();
-
-            }
-
-            catch(IOException e)
-
-            {
-
-            }
-
-        }
-
-        
-
-    }
-
-    
-
-    public void otherPlayerMoved(int playerRank, List<Card> move)
-
-    {
-
-        output.println("OPPONENT_MOVED: Player " + playerRank + " moved " + moveToString(move));
-
-    }
-
-
-
-    public boolean returnMove()
-
-    {
-
-        return madeMove;
-
-    }
-
-    public boolean returnComplete()
-
-    {
-
-        return madeComplete;
-
-    }
-
-    public boolean returnPass()
-
-    {
-
-        return madePass;
-
-    }
-
-    public List<Card> getPlay()
-
-    {
-
-        return play;
-
-    }
-    public List<Card> getHand()
-    {
-    	return hand;
-    }
-
-}
+public class Player1 extends Thread
+	{
+		private Socket thisClientSocket;
+		private boolean runThread = true;
+		private boolean move = false, pass = false, complete = false;
+		private int rank;
+		private List<Card> hand = new ArrayList<Card>(), play = new ArrayList<Card>();
+		private BufferedReader clientIn = null;
+		private PrintWriter clientOut = null;
+		
+		Player1(int r)
+		{
+			rank = r;
+			
+		}
+		
+		public String moveToString(List<Card> move)
+
+	    {
+	        String output = "";
+	        
+	        for(int i=0; i<move.size(); i++)
+	        {
+	            output+= move.get(i).toString() + " ";
+	        }
+
+	        return output;
+	    }
+		
+		public void opponentMoved(String s)
+		{
+			clientOut.println("OTHER " + s);
+		}
+		
+		public void setSocket(Socket s)
+		{
+			thisClientSocket = s;
+		}
+		
+		public void addHand(Card c)
+		{
+			hand.add(c);
+		}
+		
+		public List<Card> getHand()
+		{
+			return hand;
+		}
+		
+		public boolean getMove()
+		{
+			return move;
+		}
+		
+		public boolean getComplete()
+		{
+			return complete;
+		}
+		
+		public boolean getPass()
+		{
+			return pass;
+		}
+		
+		public List<Card> getPlay()
+		{
+			return play;
+		}
+		
+		public int getRank()
+		{
+			return rank;
+		}
+		
+		public void run()
+		{
+			
+			System.out.println("Accepted Client Address - " + thisClientSocket.getInetAddress().getHostName());
+			try
+			{
+				clientIn = new BufferedReader(new InputStreamReader(thisClientSocket.getInputStream()));
+				clientOut = new PrintWriter(new OutputStreamWriter(thisClientSocket.getOutputStream()));
+				
+				clientOut.println("HAND " + moveToString(hand));
+				
+				while(runThread)
+				{
+					String command = clientIn.readLine();
+					System.out.println("Client says: " + command);
+					sleep(10000);
+					
+					/*if(!server1.getServerOn())
+					{
+						System.out.println("Server has been stopped already");
+						clientOut.println("Server has stopped");
+						clientOut.flush();
+						runThread = false;
+					}*/
+					
+					if(command.startsWith("MOVE"))
+					{
+						move = true;
+						command = command.substring(5);
+						while(command.length()>1)
+						{
+							play.add(new Card(command.substring(0, 1), Integer.parseInt(command.substring(1, command.indexOf(" ")))));
+							command= command.substring(command.indexOf(" ") + 1);
+						}
+					}
+					else if(command.startsWith("COMPLETE"))
+					{
+						complete = true;
+						command = command.substring(9);
+						while(command.length()>1)
+						{
+							play.add(new Card(command.substring(0, 1), Integer.parseInt(command.substring(1, command.indexOf(" ")))));
+							command= command.substring(command.indexOf(" ") + 1);
+						}
+					}
+					else if(command.startsWith("PASS"))
+					{
+						pass = true;
+						
+					}
+					
+					
+					clientOut.flush();
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					clientIn.close();
+					clientOut.close();
+					thisClientSocket.close();
+					System.out.println("Everything stopped");
+					
+				}
+				catch(IOException ioe)
+				{
+					ioe.printStackTrace();
+				}
+			}
+		}
+	}
